@@ -1,0 +1,89 @@
+App\Entity\Offer:
+    type: entity
+    table: offer
+    indexes:
+        FK_job_id_offer:
+            columns:
+                - job_id
+        FK_user_id_offer:
+            columns:
+                - user_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        message:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+        salaryType:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: salary_type
+        salaryCurrency:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: salary_currency
+        salary:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        executePeriod:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: execute_period
+        executePeriodDimension:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: execute_period_dimension
+        createdAt:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: created_at
+        updatedAt:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: updated_at
+    manyToOne:
+        job:
+            targetEntity: Job
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                job_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        user:
+            targetEntity: User
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,41 @@
+App\Entity\Country:
+    type: entity
+    table: country
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        titleUk:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: title_uk
+        titleRu:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: title_ru
+        titleEn:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: title_en
+        code:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

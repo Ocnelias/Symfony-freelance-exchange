@@ -1,0 +1,48 @@
+App\Entity\Category:
+    type: entity
+    table: category
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        titleEn:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: title_en
+        titleUk:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: title_uk
+        titleRu:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: title_ru
+        parentId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: parent_id
+        slug:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

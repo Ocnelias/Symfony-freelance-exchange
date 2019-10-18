@@ -1,0 +1,71 @@
+App\Entity\Message:
+    type: entity
+    table: message
+    indexes:
+        FK_to_message:
+            columns:
+                - to
+        FK_from_message:
+            columns:
+                - from
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        status:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+        subject:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        body:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        createdAt:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: created_at
+        updatedAt:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: updated_at
+    manyToOne:
+        from:
+            targetEntity: User
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                from:
+                    referencedColumnName: id
+            orphanRemoval: false
+        to:
+            targetEntity: User
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                to:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

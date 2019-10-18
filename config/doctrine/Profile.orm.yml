@@ -1,0 +1,125 @@
+App\Entity\Profile:
+    type: entity
+    table: profile
+    indexes:
+        FK_city_id_profile:
+            columns:
+                - city_id
+        FK_country_id_profile:
+            columns:
+                - country_id
+        FK_user_id_profile:
+            columns:
+                - user_id
+        FK_category_id_profile:
+            columns:
+                - category_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        firstname:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        lastname:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        birthDate:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: birth_date
+        cityOther:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: city_other
+        image:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        phone:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        socLinks:
+            type: string
+            nullable: true
+            length: 500
+            options:
+                fixed: false
+            column: soc_links
+        skills:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        description:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+    manyToOne:
+        category:
+            targetEntity: Category
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                category_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        city:
+            targetEntity: City
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                city_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        country:
+            targetEntity: Country
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                country_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        user:
+            targetEntity: User
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

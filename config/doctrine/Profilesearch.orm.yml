@@ -1,0 +1,113 @@
+App\Entity\Profilesearch:
+    type: entity
+    table: profileSearch
+    indexes:
+        FK_user_id_profileSearch:
+            columns:
+                - user_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        status:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+        title:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        country:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        cityOther:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: city_other
+        city:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        salaryType:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: salary_type
+        salaryCurrency:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: salary_currency
+        salary:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+        isRemote:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: is_remote
+        isPermanent:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: is_permanent
+        permanentType:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: permanent_type
+        skills:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        createdAt:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: created_at
+        updatedAt:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: updated_at
+    manyToOne:
+        user:
+            targetEntity: User
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

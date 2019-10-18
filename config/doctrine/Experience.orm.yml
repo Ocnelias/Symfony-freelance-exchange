@@ -1,0 +1,86 @@
+App\Entity\Experience:
+    type: entity
+    table: experience
+    indexes:
+        FK_category_id_experience:
+            columns:
+                - category_id
+        FK_user_id_experience:
+            columns:
+                - user_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        company:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        profession:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        country:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        city:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        fromDate:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: from_date
+        toDate:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: to_date
+        description:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+    manyToOne:
+        category:
+            targetEntity: Category
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                category_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        user:
+            targetEntity: User
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
