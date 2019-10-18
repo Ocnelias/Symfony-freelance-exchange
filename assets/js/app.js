@@ -21,7 +21,7 @@ var $ = require('jquery');
      // ./ (or ../) means to look for a local file
 
  $(document).ready(function() {
-        $('body').prepend('<h1>Job</h1>');
+
     });
 
 require('bootstrap');
