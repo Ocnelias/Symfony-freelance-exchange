@@ -77,6 +77,26 @@
                                 <li class="nav-item">
                                     <a class="nav-link add-button" href="{{ path('job_new') }}"><i class="fa fa-plus-circle"></i> {{'Post a project'|trans }}</a>
                                 </li>
+
+
+
+
+
+                            </ul>
+                            <ul class="navbar-nav ml-auto main-nav ">
+                                <li class="nav-item dropdown dropdown-slide">
+                                    <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-globe" aria-hidden="true"></i> {{ app.request.locale }} <span><i class="fa fa-angle-down"></i></span>
+                                    </a>
+                                    <!-- Dropdown list -->
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item"  href="{{ path(app.request.get('_route', 'homepage'), app.request.get('_route_params', [])|merge({_locale: 'uk'})) }}"> UK </a>
+                                        <a class="dropdown-item"  href="{{ path(app.request.get('_route', 'homepage'), app.request.get('_route_params', [])|merge({_locale: 'ru'})) }}"> RU </a>
+                                        <a class="dropdown-item"  href="{{ path(app.request.get('_route', 'homepage'), app.request.get('_route_params', [])|merge({_locale: 'en'})) }}"> EN </a>
+
+                                    </div>
+                                </li>
+
                             </ul>
                         </div>
                     </nav>

@@ -1,13 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}
+
+    {{'Registration'|trans }}
+{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
-    {{ form_start(registrationForm, {attr: {'novalidate': 'novalidate'} }) }}
+
+
+    <section class="user-profile section">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
+
+                    <div class="widget personal-info">
+                        <h1 class="widget-header user">{{'Registration'|trans }}</h1>
+
+                        {{ form_start(registrationForm) }}
+
+                        {{ form_widget(registrationForm) }}
+
+                         <button class="btn btn-primary">{{'Register'|trans }}</button>
+
+                        {{ form_end(registrationForm) }}
+
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-10 offset-md-1 col-lg-4 offset-lg-0">
+                    <div class="sidebar">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 
-        <button class="btn">Register</button>
-    {{ form_end(registrationForm) }}
 {% endblock %}

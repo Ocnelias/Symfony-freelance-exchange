@@ -11,7 +11,7 @@
       </trans-unit>
       <trans-unit id="Xf.G8UW" resname="Show vacancies">
         <source>Show vacancies</source>
-        <target>__Show vacancies</target>
+        <target>Show vacancies</target>
       </trans-unit>
     </body>
   </file>

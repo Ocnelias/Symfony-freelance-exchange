@@ -13,6 +13,94 @@
         <source>Show vacancies</source>
         <target>Показати вакансії</target>
       </trans-unit>
+      <trans-unit id="x5Pg2aH" resname="Registration">
+        <source>Registration</source>
+        <target>__Registration</target>
+      </trans-unit>
+      <trans-unit id="u3I07BJ" resname="Register">
+        <source>Register</source>
+        <target>__Register</target>
+      </trans-unit>
+      <trans-unit id="OnhpU4i" resname="Home">
+        <source>Home</source>
+        <target>__Home</target>
+      </trans-unit>
+      <trans-unit id="K9GQWvj" resname="Personal area">
+        <source>Personal area</source>
+        <target>__Personal area</target>
+      </trans-unit>
+      <trans-unit id="nWMiwfT" resname="Login">
+        <source>Login</source>
+        <target>__Login</target>
+      </trans-unit>
+      <trans-unit id="pnuu_tK" resname="Post a project">
+        <source>Post a project</source>
+        <target>__Post a project</target>
+      </trans-unit>
+      <trans-unit id="Md4W_hV" resname="footer.main_text">
+        <source>footer.main_text</source>
+        <target>__footer.main_text</target>
+      </trans-unit>
+      <trans-unit id="6lNn5LO" resname="Site Pages">
+        <source>Site Pages</source>
+        <target>__Site Pages</target>
+      </trans-unit>
+      <trans-unit id="XcN0dkQ" resname="All Rights Reserved">
+        <source>All Rights Reserved</source>
+        <target>__All Rights Reserved</target>
+      </trans-unit>
+      <trans-unit id="DiImtSN" resname="Welcome">
+        <source>Welcome</source>
+        <target>__Welcome</target>
+      </trans-unit>
+      <trans-unit id="_uBgoMT" resname="Job search">
+        <source>Job search</source>
+        <target>__Job search</target>
+      </trans-unit>
+      <trans-unit id="MZ.kV5K" resname="main_slogan">
+        <source>main_slogan</source>
+        <target>__main_slogan</target>
+      </trans-unit>
+      <trans-unit id="6a4mZFu" resname="second_slogan">
+        <source>second_slogan</source>
+        <target>__second_slogan</target>
+      </trans-unit>
+      <trans-unit id="wBz8uBu" resname="Popular Category">
+        <source>Popular Category</source>
+        <target>__Popular Category</target>
+      </trans-unit>
+      <trans-unit id="JEIQ5IQ" resname="project">
+        <source>project</source>
+        <target>__project</target>
+      </trans-unit>
+      <trans-unit id="VvIWlaZ" resname="SEARCH">
+        <source>SEARCH</source>
+        <target>__SEARCH</target>
+      </trans-unit>
+      <trans-unit id="XmW2PRj" resname="Projects by categories">
+        <source>Projects by categories</source>
+        <target>__Projects by categories</target>
+      </trans-unit>
+      <trans-unit id="FQn1YfJ" resname="Save">
+        <source>Save</source>
+        <target>__Save</target>
+      </trans-unit>
+      <trans-unit id="pB6yv3J" resname="New project">
+        <source>New project</source>
+        <target>__New project</target>
+      </trans-unit>
+      <trans-unit id="I.yaKf0" resname="Create a new project">
+        <source>Create a new project</source>
+        <target>Створити новий проект</target>
+      </trans-unit>
+      <trans-unit id="wYmEDPf" resname="Log in">
+        <source>Log in</source>
+        <target>__Log in</target>
+      </trans-unit>
+      <trans-unit id="dDUw20Q" resname="Please sign in">
+        <source>Please sign in</source>
+        <target>__Please sign in</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
