@@ -64,7 +64,7 @@ class JobType extends AbstractType
             ])
             //->add('city')
            // ->add('country')
-            ->add('user')
+            //->add('user')
         ;
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {

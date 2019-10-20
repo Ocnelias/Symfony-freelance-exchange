@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * User
@@ -66,18 +67,18 @@ class User implements UserInterface, \Serializable
     private $status = '10';
 
     /**
-     * @var int
      *
-     * @ORM\Column(name="created_at", type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=true)
+     * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="updated_at", type="integer", nullable=false)
+     * @ORM\Column(type="integer",  nullable=true)
+     * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
+
 
     /**
      * @var string|null

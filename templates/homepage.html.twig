@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Job search{% endblock %}
+{% block title %}{{'Job search'|trans }}{% endblock %}
 
 {% block body %}
 <!--===============================
@@ -14,10 +14,10 @@
             <div class="col-md-12">
                 <!-- Header Contetnt -->
                 <div class="content-block">
-                    <h1>Buy & Sell Near You </h1>
-                    <p>Join the millions who buy and sell from each other <br> everyday in local communities around the world</p>
+                    <h1>{{'main_slogan'|trans }}</h1>
+                    <p>{{'second_slogan'|trans }}</p>
                     <div class="short-popular-category-list text-center">
-                        <h2>Popular Category</h2>
+                        <h2>{{'Popular Category'|trans }}</h2>
                         <ul class="list-inline">
                             <li class="list-inline-item">
                                 <a href=""><i class="fa fa-bed"></i> Hotel</a></li>
@@ -44,14 +44,14 @@
                             <!-- Store Search -->
                             <div class="col-lg-6 col-md-12">
                                 <div class="block d-flex">
-                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" placeholder="Search for store">
+                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" placeholder="{{'project'|trans }}">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-12">
                                 <div class="block d-flex">
-                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" placeholder="Search for store">
+                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" placeholder="">
                                     <!-- Search Button -->
-                                    <button class="btn btn-main">SEARCH</button>
+                                    <button class="btn btn-main">{{'SEARCH'|trans }}</button>
                                 </div>
                             </div>
                         </div>
@@ -216,8 +216,8 @@
             <div class="col-12">
                 <!-- Section title -->
                 <div class="section-title">
-                    <h2>All Categories</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis, provident!</p>
+                    <h2>{{'Projects by categories'|trans }}</h2>
+                    <p></p>
                 </div>
                 <div class="row">
                     <!-- Category list -->
