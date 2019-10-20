@@ -1,81 +1,8 @@
-{#
-<li {% if app.request.locale == 'uk' %}aria-checked="true" class="active"{% else %}aria-checked="false"{% endif %} role="menuitem"><a href="{{ path(app.request.get('_route', '/'), app.request.get('_route_params', [])|merge({_locale: 'uk'})) }}">UK <small>uk</small></a></li>
-<li {% if app.request.locale == 'fr' %}aria-checked="true" class="active"{% else %}aria-checked="false"{% endif %} role="menuitem"><a href="{{ path(app.request.get('_route', '/'), app.request.get('_route_params', [])|merge({_locale: 'fr'})) }}">fr <small>fr</small></a></li>
-#}
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}
-            {{'title.homepage'|trans }}
-        {% endblock %}</title>
-    {% block stylesheets %}
-        {{ encore_entry_link_tags('app') }}
-    {% endblock %}
-</head>
-<body>
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <nav class="navbar navbar-expand-lg  navigation">
-                    <a class="navbar-brand" href="index.html">
-                        <img src="images/logo.png" alt="">
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ml-auto main-nav ">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="index.html">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="dashboard.html">Dashboard</a>
-                            </li>
-                            <li class="nav-item dropdown dropdown-slide">
-                                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Pages <span><i class="fa fa-angle-down"></i></span>
-                                </a>
-                                <!-- Dropdown list -->
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="category.html">Category</a>
-                                    <a class="dropdown-item" href="single.html">Single Page</a>
-                                    <a class="dropdown-item" href="store-single.html">Store Single</a>
-                                    <a class="dropdown-item" href="dashboard.html">Dashboard</a>
-                                    <a class="dropdown-item" href="user-profile.html">User Profile</a>
-                                    <a class="dropdown-item" href="submit-coupon.html">Submit Coupon</a>
-                                    <a class="dropdown-item" href="blog.html">Blog</a>
-                                    <a class="dropdown-item" href="single-blog.html">Single Post</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown dropdown-slide">
-                                <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Listing <span><i class="fa fa-angle-down"></i></span>
-                                </a>
-                                <!-- Dropdown list -->
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav ml-auto mt-10">
-                            <li class="nav-item">
-                                <a class="nav-link login-button" href="index.html">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link add-button" href="#"><i class="fa fa-plus-circle"></i> Add Listing</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </div>
-</section>
+{% extends 'base.html.twig' %}
 
+{% block title %}Job search{% endblock %}
+
+{% block body %}
 <!--===============================
 =            Hero Area            =
 ================================-->
@@ -166,7 +93,7 @@
                         <div class="thumb-content">
                             <!-- <div class="price">$200</div> -->
                             <a href="">
-                                <img class="card-img-top img-fluid" src="images/products/products-1.jpg" alt="Card image cap">
+                                <img class="card-img-top img-fluid" src="/images/products/products-1.jpg" alt="Card image cap">
                             </a>
                         </div>
                         <div class="card-body">
@@ -203,7 +130,7 @@
                         <div class="thumb-content">
                             <!-- <div class="price">$200</div> -->
                             <a href="">
-                                <img class="card-img-top img-fluid" src="images/products/products-2.jpg" alt="Card image cap">
+                                <img class="card-img-top img-fluid" src="/images/products/products-2.jpg" alt="Card image cap">
                             </a>
                         </div>
                         <div class="card-body">
@@ -240,7 +167,7 @@
                         <div class="thumb-content">
                             <!-- <div class="price">$200</div> -->
                             <a href="">
-                                <img class="card-img-top img-fluid" src="images/products/products-3.jpg" alt="Card image cap">
+                                <img class="card-img-top img-fluid" src="/images/products/products-3.jpg" alt="Card image cap">
                             </a>
                         </div>
                         <div class="card-body">
@@ -422,7 +349,4 @@
     <!-- Container End -->
 </section>
 
-{{ encore_entry_script_tags('app') }}
-{% block javascripts %}{% endblock %}
-</body>
-</html>
+{% endblock %}

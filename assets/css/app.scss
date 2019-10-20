@@ -2483,4 +2483,9 @@ article.single-post p {
   text-decoration: none;
 }
 
+label.required:before {
+  content: "*";
+  color: red;
+}
+
 /*# sourceMappingURL=maps/style.css.map */

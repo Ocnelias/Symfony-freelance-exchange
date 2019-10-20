@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -10,37 +11,31 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="password_reset_token", columns={"password_reset_token"}), @ORM\UniqueConstraint(name="email", columns={"email"}), @ORM\UniqueConstraint(name="username", columns={"username"})})
  * @ORM\Entity
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
+
     /**
-     * @var string
+     * @var array
      *
-     * @ORM\Column(name="role", type="string", length=255, nullable=false)
+     * @ORM\Column(type="json")
      */
-    private $role = '';
+     private $roles = ['Admin','Moderator','Employer','Seeker'];
 
     /**
      * @var string
      *
-     * @ORM\Column(name="auth_key", type="string", length=32, nullable=false)
+     * @ORM\Column(type="string")
      */
-    private $authKey;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="password_hash", type="string", length=255, nullable=false)
-     */
-    private $passwordHash;
+    private $password;
 
     /**
      * @var string|null
@@ -110,41 +105,6 @@ class User
         return $this->id;
     }
 
-    public function getRole(): ?string
-    {
-        return $this->role;
-    }
-
-    public function setRole(string $role): self
-    {
-        $this->role = $role;
-
-        return $this;
-    }
-
-    public function getAuthKey(): ?string
-    {
-        return $this->authKey;
-    }
-
-    public function setAuthKey(string $authKey): self
-    {
-        $this->authKey = $authKey;
-
-        return $this;
-    }
-
-    public function getPasswordHash(): ?string
-    {
-        return $this->passwordHash;
-    }
-
-    public function setPasswordHash(string $passwordHash): self
-    {
-        $this->passwordHash = $passwordHash;
-
-        return $this;
-    }
 
     public function getPasswordResetToken(): ?string
     {
@@ -252,6 +212,79 @@ class User
         $this->newsletter = $newsletter;
 
         return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * Returns the roles or permissions granted to the user for security.
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+
+        // guarantees that a user always has at least one role for security
+        if (empty($roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): void
+    {
+        $this->roles = $roles;
+    }
+
+    /**
+     * Returns the salt that was originally used to encode the password.
+     *
+     * {@inheritdoc}
+     */
+    public function getSalt(): ?string
+    {
+        // See "Do you need to use a Salt?" at https://symfony.com/doc/current/cookbook/security/entity_provider.html
+        // we're using bcrypt in security.yml to encode the password, so
+        // the salt value is built-in and you don't have to generate one
+
+        return null;
+    }
+
+    /**
+     * Removes sensitive data from the user.
+     *
+     * {@inheritdoc}
+     */
+    public function eraseCredentials(): void
+    {
+        // if you had a plainPassword property, you'd nullify it here
+        // $this->plainPassword = null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function serialize(): string
+    {
+        // add $this->salt too if you don't use Bcrypt or Argon2i
+        return serialize([$this->id, $this->username, $this->password]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function unserialize($serialized): void
+    {
+        // add $this->salt too if you don't use Bcrypt or Argon2i
+        [$this->id, $this->username, $this->password] = unserialize($serialized, ['allowed_classes' => false]);
     }
 
 

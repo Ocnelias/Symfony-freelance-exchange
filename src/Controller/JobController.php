@@ -34,6 +34,8 @@ class JobController extends AbstractController
     public function new(Request $request): Response
     {
         $job = new Job();
+        $job->setUser($this->getUser());
+
         $form = $this->createForm(JobType::class, $job);
         $form->handleRequest($request);
 

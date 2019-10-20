@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * Job
  *
@@ -211,16 +211,15 @@ class Job
     private $languages;
 
     /**
-     * @var int
      *
-     * @ORM\Column(name="created_at", type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=true)
+     * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="updated_at", type="integer", nullable=false)
+     * @ORM\Column(type="integer",  nullable=true)
+     * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
 
@@ -593,10 +592,14 @@ class Job
         return $this;
     }
 
-    public function getCreatedAt(): ?int
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
     {
         return $this->createdAt;
     }
+
 
     public function setCreatedAt(int $createdAt): self
     {
@@ -605,7 +608,10 @@ class Job
         return $this;
     }
 
-    public function getUpdatedAt(): ?int
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
     {
         return $this->updatedAt;
     }

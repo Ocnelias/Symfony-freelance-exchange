@@ -1,16 +1,178 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app.request.locale }}">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>
+            {% block title %}
+                {{'Welcome'|trans }}
+            {% endblock %}</title>
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {{ encore_entry_script_tags('app') }}
-        {% block javascripts %}{% endblock %}
+         <!--===============================
+         =            Header               =
+        ================================-->
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-expand-lg  navigation">
+                        <a class="navbar-brand" href="{{ path('homepage') }}">
+                            <img src="/images/logo.png" alt="">
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto main-nav ">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{{ path('homepage') }}">{{'Home'|trans }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="dashboard.html">{{'Personal area'|trans }}</a>
+                                </li>
+                                <li class="nav-item dropdown dropdown-slide">
+                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Pages <span><i class="fa fa-angle-down"></i></span>
+                                    </a>
+                                    <!-- Dropdown list -->
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="category.html">Category</a>
+                                        <a class="dropdown-item" href="single.html">Single Page</a>
+                                        <a class="dropdown-item" href="store-single.html">Store Single</a>
+                                        <a class="dropdown-item" href="user-profile.html">User Profile</a>
+                                        <a class="dropdown-item" href="submit-coupon.html">Submit Coupon</a>
+                                        <a class="dropdown-item" href="blog.html">Blog</a>
+                                        <a class="dropdown-item" href="single-blog.html">Single Post</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown dropdown-slide">
+                                    <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Listing <span><i class="fa fa-angle-down"></i></span>
+                                    </a>
+                                    <!-- Dropdown list -->
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="navbar-nav ml-auto mt-10">
+                                <li class="nav-item">
+                                    <a class="nav-link login-button" href="{{ path('security_login') }}">{{'Login'|trans }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link add-button" href="{{ path('job_new') }}"><i class="fa fa-plus-circle"></i> {{'Post a project'|trans }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        {% block body %}
+
+        {% endblock %}
+
+        <!--============================
+        =            Footer            =
+        =============================-->
+
+        <footer class="footer section section-sm">
+            <!-- Container Start -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-7 offset-md-1 offset-lg-0">
+                        <!-- About -->
+                        <div class="block about">
+                            <!-- footer logo -->
+                            <img src="/images/logo-footer.png" alt="">
+                            <!-- description -->
+                            <p class="alt-color">{{'footer.main_text'|trans }}</p>
+                        </div>
+                    </div>
+                    <!-- Link list -->
+                    <div class="col-lg-2 offset-lg-1 col-md-3">
+                        <div class="block">
+                            <h4>{{'Site Pages'|trans }}</h4>
+                            <ul>
+                                <li><a href="#">Boston</a></li>
+                                <li><a href="#">How It works</a></li>
+                                <li><a href="#">Deals & Coupons</a></li>
+                                <li><a href="#">Articls & Tips</a></li>
+                                <li><a href="#">Terms of Services</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Link list -->
+                    <div class="col-lg-2 col-md-3 offset-md-1 offset-lg-0">
+                        <div class="block">
+                            <h4>Admin Pages</h4>
+                            <ul>
+                                <li><a href="#">Boston</a></li>
+                                <li><a href="#">How It works</a></li>
+                                <li><a href="#">Deals & Coupons</a></li>
+                                <li><a href="#">Articls & Tips</a></li>
+                                <li><a href="#">Terms of Services</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Promotion -->
+                    <div class="col-lg-4 col-md-7">
+                        <!-- App promotion -->
+                        <div class="block-2 app-promotion">
+                            <a href="">
+                                <!-- Icon -->
+{#
+                                <img src="/images/footer/phone-icon.png" alt="mobile-icon">
+#}
+                            </a>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Container End -->
+        </footer>
+        <!-- Footer Bottom -->
+        <footer class="footer-bottom">
+            <!-- Container Start -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-12">
+                        <!-- Copyright -->
+                        <div class="copyright">
+                            <p>© {{ 'now'|date('Y') }} - {{ app.request.getSchemeAndHttpHost() }}
+                                {{'All Rights Reserved'|trans }}</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-12">
+                        <!-- Social Icons -->
+                        <ul class="social-media-icons text-right">
+                            <li><a class="fab fa-facebook" href=""></a></li>
+                            <li><a class="fab fa-twitter" href=""></a></li>
+                            <li><a class="fab fa-pinterest-p" href=""></a></li>
+                            <li><a class="fab fa-vimeo" href=""></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Container End -->
+            <!-- To Top -->
+            <div class="top-to">
+                <a id="top" class="" href=""><i class="fa fa-angle-up"></i></a>
+            </div>
+        </footer>
+
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
     </body>
 </html>
 

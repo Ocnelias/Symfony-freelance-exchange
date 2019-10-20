@@ -1,11 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Job{% endblock %}
+{% block title %}
+
+    {{'New project'|trans }}
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Job</h1>
 
-    {{ include('job/_form.html.twig') }}
 
-    <a href="{{ path('job_index') }}">back to list</a>
+    <section class="user-profile section">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
+
+                    <div class="widget personal-info">
+                        <h3 class="widget-header user">{{'Create a new project'|trans }}</h1>
+                        </h3>
+                        {{ include('job/_form.html.twig') }}
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-10 offset-md-1 col-lg-4 offset-lg-0">
+                    <div class="sidebar">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
 {% endblock %}
