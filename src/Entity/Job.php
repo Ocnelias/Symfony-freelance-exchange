@@ -12,6 +12,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Job
 {
+
     /**
      * @var int
      *

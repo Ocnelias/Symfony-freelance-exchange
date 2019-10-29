@@ -16,8 +16,9 @@ require('@fortawesome/fontawesome-free/js/all.js');
 // const $ = require('jquery');
  // loads the jquery package from node_modules
 var $ = require('jquery');
+global.$ = global.jQuery = $;
 
- // import the function from greet.js (the .js extension is optional)
+// import the function from greet.js (the .js extension is optional)
      // ./ (or ../) means to look for a local file
 
  $(document).ready(function() {

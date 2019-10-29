@@ -4,7 +4,9 @@ namespace App\Form;
 
 use App\Entity\Category;
 use App\Entity\Job;
+use App\Repository\CategoryRepository;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -16,6 +18,15 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class JobType extends AbstractType
 {
+
+    private $categoryRepository;
+    
+    public function __construct(CategoryRepository $categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
+    }
+    
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -25,7 +36,7 @@ class JobType extends AbstractType
                 'data' => 'What needs to be done',
             ])
             ->add('description', TextareaType::class, [
-                'attr' => ['class' => 'tinymce'],
+
             ])
             ->add('images')
             ->add('isRemote')
@@ -57,14 +68,26 @@ class JobType extends AbstractType
             ->add('ageTo')
             ->add('skills')
             ->add('languages')
-           // ->add('category', EntityType::class)
+            ->add('main_category', EntityType::class, [
+                'class' => Category::class,
+                'mapped' => false,
+                'placeholder' => 'Choose category',
+                'choice_label' => 'title_' . $GLOBALS['request']->getLocale(),
+                'choices' => $this->categoryRepository->findMainCategories(),
+
+            ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
-                'choice_label' => 'title_uk',
+                'choice_label' => 'title_' . $GLOBALS['request']->getLocale(),
+                'choices'=>null
             ])
             //->add('city')
            // ->add('country')
             //->add('user')
+            ->add('agreement', CheckboxType::class, [
+                'mapped' => false,
+                'label'=>'I agree to the Terms and conditions'])
+
         ;
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {

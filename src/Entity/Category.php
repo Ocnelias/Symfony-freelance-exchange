@@ -121,5 +121,14 @@ class Category
         return $this;
     }
 
+    public function getMainCategories()
+    {
+
+
+
+    }
+
+
+
 
 }
