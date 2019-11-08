@@ -101,6 +101,34 @@
         <source>Please sign in</source>
         <target>__Please sign in</target>
       </trans-unit>
+      <trans-unit id="0KGyJED" resname="title_placeholder">
+        <source>title_placeholder</source>
+        <target>Що потрібно зробити</target>
+      </trans-unit>
+      <trans-unit id="Wuz6LP1" resname="Single project">
+        <source>Single project</source>
+        <target>Разовий проект</target>
+      </trans-unit>
+      <trans-unit id="qjHRxCo" resname="Permanent job">
+        <source>Permanent job</source>
+        <target>Постійна робота</target>
+      </trans-unit>
+      <trans-unit id="qsTTNQH" resname="job_permanent_label">
+        <source>job_permanent_label</source>
+        <target>Тип проекту</target>
+      </trans-unit>
+      <trans-unit id="bpJTcO1" resname="job_salary_currency">
+        <source>job_salary_currency</source>
+        <target>Валюта</target>
+      </trans-unit>
+      <trans-unit id="jNyC264" resname="job_salary_type">
+        <source>job_salary_type</source>
+        <target>Тип оплати</target>
+      </trans-unit>
+      <trans-unit id="qvIyBkY" resname="title">
+        <source>title</source>
+        <target>Назва проекту</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

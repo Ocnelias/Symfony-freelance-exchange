@@ -36,10 +36,15 @@
     {{ parent() }}
     <script>
         $(document).ready(function() {
+            var catSelect = $("#job_category");
+            var selectedCat = $("#job_main_category").val();
+            if (selectedCat===''){
+                catSelect.html('').css('display','none');
+            }
+
             $('#job_main_category').change(function () {
             var selector = $(this);
 
-            // Request the cats of the selected city.
             $.ajax({
                 url: "{{ path('get_subcategories') }}",
                 type: "GET",
@@ -49,14 +54,13 @@
                 },
                 success: function (cats) {
 
-                    var catSelect = $("#job_category");
+
 
                     // Remove current options
-                    catSelect.html('');
+                    catSelect.html('').css('display','block');
 
                     // Empty value ...
                     //catSelect.append('<option value> </option>');
-
 
                     $.each(cats, function (key, cat) {
                         catSelect.append('<option value="' + cat.id + '">' + cat.name + '</option>');
@@ -68,6 +72,12 @@
             });
         });
         });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            bsCustomFileInput.init()
+        })
     </script>
 {% endblock %}
 

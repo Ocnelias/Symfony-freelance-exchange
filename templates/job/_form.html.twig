@@ -1,8 +1,46 @@
+{{ form_start(form, {'attr': {'class': 'form-inline1'}}) }}
 
-{{ form_start(form) }}
 
-    {{ form_widget(form) }}
+<div class="form-group">
+    {{ form_row(form.title, { 'label': 'Title'|trans }) }}
+</div>
 
-    <button class="btn btn-transparent">{{ button_label|default('Save'|trans) }}</button>
+<div class="form-group">
+    {{ form_row(form.description, { 'label': 'Description'|trans, attr:{'placeholder': 'What needs to be done'|trans} }) }}
+</div>
+
+
+<div class="form-group">
+    <div class="row">
+        <div class="col-md-6">
+            {{ form_row(form.salary, { 'label': 'Salary'|trans }) }}
+        </div>
+        <div class="col-md-2">
+            {{ form_row(form.salaryCurrency, { 'label': ' ' }) }}
+        </div>
+        <div class="col-md-1">
+            <br>  <br>
+           {{'за'|trans}}
+        </div>
+        <div class="col-md-3">
+            {{ form_row(form.salaryType, { 'label': ' ' }) }}
+        </div>
+    </div>
+</div>
+
+{{ form_row(form.agreeTerms, { 'label': false, 'class' : 'form-check-input' }) }}
+
+
+<div class="form-group form-check">
+    <label class="form-check-label">
+        <input class="form-check-input1" type="checkbox">   {{'Agree to'|trans}} <a href="{{ path('terms') }}"> {{'our Terms and conditions'|trans  }}</a>
+    </label>
+</div>
+
+
+
+
+<button type="submit" class="btn btn-primary">Submit</button>
+
 
 {{ form_end(form) }}

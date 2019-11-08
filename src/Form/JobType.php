@@ -9,12 +9,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\IsTrue;
 
 class JobType extends AbstractType
 {
@@ -30,69 +32,104 @@ class JobType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
             ->add('title', null, [
-                'required'   => true,
-                'data' => 'What needs to be done',
             ])
             ->add('description', TextareaType::class, [
-
             ])
-            ->add('images')
-            ->add('isRemote')
-            ->add('isPermanent')
-            ->add('permanentType')
-            ->add('cityOther')
-            ->add('citiesAllowed')
-            ->add('salaryType')
-            ->add('salaryCurrency')
+
+            ->add('uploadedFiles', FileType::class, [
+                'label' => 'job_files_label',
+                'mapped' => false,
+                'required' => false,
+                'attr' => [
+                    'multiple' => 'multiple',
+                ],
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'application/pdf',
+                            'application/x-pdf',
+                            'image/jpeg/',
+                            'image/png/',
+                            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                            'application/msword',
+                            'text/plain',
+                        ],
+                        'mimeTypesMessage' => 'Wrong file format',
+                    ])
+                ],
+
+                'label_translation_parameters' => [
+                    'job_files_label' => 'Files (Project specification, images, etc)',
+                ],
+            ])
+
+
+            ->add('isPermanent', ChoiceType::class, [
+                'choices'  => [
+                    'Single project'=> 1,
+                    'Permanent job' => 2,
+                ],
+                'label' => 'job_permanent_label',
+                'choice_translation_domain' => 'messages',
+            ])
+
+
+            ->add('salary')
+
             ->add('salaryCurrency', ChoiceType::class, [
                 'choices'  => [
                     'USD'=> 1,
                     'EUR' => 2,
                     'UAH' => 3,
                 ],
+                'label' => 'job_salary_currency',
+                'choice_translation_domain' => 'messages',
             ])
-            ->add('salary')
-            ->add('salaryPayMethod')
-            ->add('salaryComment')
-            ->add('salaryRange')
-            ->add('salaryRangeFrom')
-            ->add('salaryRangeTo')
-            ->add('experienceNumber')
-            ->add('experienceDimension')
-            ->add('seekPeriod')
-            ->add('seekPeriodDimension')
-            ->add('education')
-            ->add('ageFrom')
-            ->add('ageTo')
-            ->add('skills')
-            ->add('languages')
+
+            ->add('salaryType', ChoiceType::class, [
+                'choices'  => [
+                    'Project'=> 1,
+                    'Hour' => 2,
+                    'Day' => 3,
+                    'Month' => 4,
+                ],
+                'label' => 'job_salary_type',
+                'choice_translation_domain' => 'messages',
+            ])
+
             ->add('main_category', EntityType::class, [
                 'class' => Category::class,
                 'mapped' => false,
-                'placeholder' => 'Choose category',
+                'placeholder' => 'Choose a category',
                 'choice_label' => 'title_' . $GLOBALS['request']->getLocale(),
                 'choices' => $this->categoryRepository->findMainCategories(),
+                'label' => 'Category',
+                'choice_translation_domain' => 'messages',
 
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'title_' . $GLOBALS['request']->getLocale(),
-                'choices'=>null
+                //'attr' => ['style' => 'display:none;'],
+                'label' => false,
+                'choices' => null,
             ])
-            //->add('city')
-           // ->add('country')
-            //->add('user')
-            ->add('agreement', CheckboxType::class, [
+
+
+            ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
-                'label'=>'I agree to the Terms and conditions'])
+               'constraints' => [
+                    new IsTrue([
+                        'message' => 'You should agree to our terms',
+                    ]),
+                ],
+                'translation_domain' => 'messages',
+            ])
 
         ;
 
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
-            // ... add a choice list of friends of the current application user
-        });
     }
 
     public function configureOptions(OptionsResolver $resolver)

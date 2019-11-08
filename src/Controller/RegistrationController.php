@@ -17,6 +17,7 @@ class RegistrationController extends AbstractController
 {
     /**
      * @Route("/register", name="register")
+     *
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator, AuthorizationCheckerInterface $authChecker): Response
     {

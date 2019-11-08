@@ -13,6 +13,104 @@
         <source>Show vacancies</source>
         <target>Show vacancies</target>
       </trans-unit>
+      <trans-unit id="x5Pg2aH" resname="Registration">
+        <source>Registration</source>
+        <target>Registration</target>
+      </trans-unit>
+      <trans-unit id="u3I07BJ" resname="Register">
+        <source>Register</source>
+        <target>Register</target>
+      </trans-unit>
+      <trans-unit id="OnhpU4i" resname="Home">
+        <source>Home</source>
+        <target>Home</target>
+      </trans-unit>
+      <trans-unit id="K9GQWvj" resname="Personal area">
+        <source>Personal area</source>
+        <target>Personal area</target>
+      </trans-unit>
+      <trans-unit id="nWMiwfT" resname="Login">
+        <source>Login</source>
+        <target>Login</target>
+      </trans-unit>
+      <trans-unit id="pnuu_tK" resname="Post a project">
+        <source>Post a project</source>
+        <target>Post a project</target>
+      </trans-unit>
+      <trans-unit id="Md4W_hV" resname="footer.main_text">
+        <source>footer.main_text</source>
+        <target>footer.main_text</target>
+      </trans-unit>
+      <trans-unit id="6lNn5LO" resname="Site Pages">
+        <source>Site Pages</source>
+        <target>Site Pages</target>
+      </trans-unit>
+      <trans-unit id="XcN0dkQ" resname="All Rights Reserved">
+        <source>All Rights Reserved</source>
+        <target>All Rights Reserved</target>
+      </trans-unit>
+      <trans-unit id="DiImtSN" resname="Welcome">
+        <source>Welcome</source>
+        <target>Welcome</target>
+      </trans-unit>
+      <trans-unit id="_uBgoMT" resname="Job search">
+        <source>Job search</source>
+        <target>Job search</target>
+      </trans-unit>
+      <trans-unit id="MZ.kV5K" resname="main_slogan">
+        <source>main_slogan</source>
+        <target>main_slogan</target>
+      </trans-unit>
+      <trans-unit id="6a4mZFu" resname="second_slogan">
+        <source>second_slogan</source>
+        <target>second_slogan</target>
+      </trans-unit>
+      <trans-unit id="wBz8uBu" resname="Popular Category">
+        <source>Popular Category</source>
+        <target>Popular Category</target>
+      </trans-unit>
+      <trans-unit id="JEIQ5IQ" resname="project">
+        <source>project</source>
+        <target>project</target>
+      </trans-unit>
+      <trans-unit id="VvIWlaZ" resname="SEARCH">
+        <source>SEARCH</source>
+        <target>SEARCH</target>
+      </trans-unit>
+      <trans-unit id="XmW2PRj" resname="Projects by categories">
+        <source>Projects by categories</source>
+        <target>Projects by categories</target>
+      </trans-unit>
+      <trans-unit id="FQn1YfJ" resname="Save">
+        <source>Save</source>
+        <target>Save</target>
+      </trans-unit>
+      <trans-unit id="pB6yv3J" resname="New project">
+        <source>New project</source>
+        <target>New project</target>
+      </trans-unit>
+      <trans-unit id="I.yaKf0" resname="Create a new project">
+        <source>Create a new project</source>
+        <target>Create a new project</target>
+      </trans-unit>
+      <trans-unit id="wYmEDPf" resname="Log in">
+        <source>Log in</source>
+        <target>Log in</target>
+      </trans-unit>
+      <trans-unit id="dDUw20Q" resname="Please sign in">
+        <source>Please sign in</source>
+        <target>Please sign in</target>
+      </trans-unit>
+       <trans-unit id="dDUw20I" resname="title_placeholder">
+         <source>title_placeholder</source>
+         <target>What needs to be done</target>
+        </trans-unit>
+             <trans-unit id="1" resname="You should agree to our terms">
+             <source>You should agree to our terms</source>
+             <target>You should agree to our terms1</target>
+             </trans-unit>
+
+
     </body>
   </file>
 </xliff>

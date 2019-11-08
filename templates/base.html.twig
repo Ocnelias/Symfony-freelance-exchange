@@ -105,9 +105,16 @@
         </div>
     </section>
 
+         {% for msg in app.session.flashBag.get('success') %}
+             <div class='alert alert-success'> {{ msg }} </div>
+         {% endfor %}
+
         {% block body %}
 
+
+
         {% endblock %}
+
 
         <!--============================
         =            Footer            =
@@ -205,6 +212,7 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+         <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
     </body>
 </html>
 

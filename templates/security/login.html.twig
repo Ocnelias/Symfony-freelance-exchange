@@ -18,7 +18,7 @@
                         <h1 class="widget-header user">{{'Please sign in'|trans }}</h1>
 
 
-                        <form method="post">
+                        <form action="{{ path('security_login') }}" method="post">
                             {% if error %}
                                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                             {% endif %}

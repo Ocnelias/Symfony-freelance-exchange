@@ -40,9 +40,36 @@ class JobController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            /** @var uploadedFiles $uploadedFiles */
+            $uploadedFiles = $form['uploadedFiles']->getData();
+
+            $data =  $form['uploadedFiles']->getData();
+           // dump($data); die();
+
+            if ($uploadedFiles) {
+                //var_dump($uploadedFiles); die();
+                $originalFilename = pathinfo($uploadedFiles->getClientOriginalName(), PATHINFO_FILENAME);
+
+                $newFilename = $originalFilename.'-'.uniqid().'.'.$uploadedFiles->guessExtension();
+
+                try {
+                    $uploadedFiles->move(
+                        $this->getParameter('files_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+
+                }
+
+                $job->setFiles($newFilename);
+            }
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($job);
             $entityManager->flush();
+
+            $this->addFlash('success','Your project was created successfully!');
 
             return $this->redirectToRoute('job_index');
         }

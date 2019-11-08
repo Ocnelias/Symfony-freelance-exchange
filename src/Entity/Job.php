@@ -4,11 +4,15 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+
 /**
  * Job
  *
  * @ORM\Table(name="job", indexes={@ORM\Index(name="FK_city_id_job", columns={"city_id"}), @ORM\Index(name="FK_user_id_job", columns={"user_id"}), @ORM\Index(name="FK_category_id_job", columns={"category_id"}), @ORM\Index(name="FK_country_id_job", columns={"country_id"})})
  * @ORM\Entity
+ *
  */
 class Job
 {
@@ -26,6 +30,7 @@ class Job
      * @var int
      *
      * @ORM\Column(name="status", type="smallint", nullable=false)
+     *
      */
     private $status = '0';
 
@@ -33,13 +38,28 @@ class Job
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255, nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Length(min=5)
+     * @Assert\Length(max=255)
      */
     private $title;
+
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", length=65535, nullable=false)
+     *
+     *
+     */
+    private $main_category;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", length=5000, nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Length(min=3)
+     * @Assert\Length(max=5000)
      */
     private $description;
 
@@ -58,6 +78,12 @@ class Job
     private $files;
 
     /**
+     *
+     * @var File
+     */
+    private $uploadedFiles;
+
+    /**
      * @var int|null
      *
      * @ORM\Column(name="is_remote", type="integer", nullable=true)
@@ -67,7 +93,7 @@ class Job
     /**
      * @var int|null
      *
-     * @ORM\Column(name="is_permanent", type="integer", nullable=true)
+     * @ORM\Column(name="is_permanent", type="integer", nullable=false)
      */
     private $isPermanent;
 
@@ -93,23 +119,24 @@ class Job
     private $citiesAllowed;
 
     /**
-     * @var int|null
+     * @var int
      *
-     * @ORM\Column(name="salary_type", type="integer", nullable=true)
+     * @ORM\Column(name="salary_type", type="integer", nullable=false)
      */
     private $salaryType;
 
     /**
-     * @var int|null
+     * @var int
      *
-     * @ORM\Column(name="salary_currency", type="integer", nullable=true)
+     * @ORM\Column(name="salary_currency", type="integer", nullable=false)
      */
     private $salaryCurrency;
 
     /**
-     * @var float|null
+     * @var float
      *
-     * @ORM\Column(name="salary", type="float", precision=10, scale=0, nullable=true)
+     * @ORM\Column(name="salary", type="float", precision=10, scale=0, nullable=false)
+     * @Assert\NotBlank
      */
     private $salary;
 
@@ -227,6 +254,7 @@ class Job
     /**
      * @var \Category
      *
+     * @Assert\NotBlank
      * @ORM\ManyToOne(targetEntity="Category")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="category_id", referencedColumnName="id")
@@ -263,6 +291,16 @@ class Job
      * })
      */
     private $user;
+
+    public function setUploadedFiles(File $file= null)
+    {
+        $this->uploadedFiles = $file;
+    }
+
+    public function getUploadedFiles()
+    {
+        return $this->uploadedFiles;
+    }
 
     public function getId(): ?int
     {
