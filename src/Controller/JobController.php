@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/job")
@@ -17,15 +18,43 @@ class JobController extends AbstractController
     /**
      * @Route("/", name="job_index", methods={"GET"})
      */
-    public function index(): Response
+    public function index(Request $request, PaginatorInterface $paginator): Response
     {
-        $jobs = $this->getDoctrine()
+//        $em = $this->getDoctrine()->getManager();
+//
+//        $repoArticles = $em->getRepository('App:News');
+//
+//        $pagination = $repoArticles->createQueryBuilder('a')
+//            ->where('a.published = 1')
+//            ->andWhere('a.author = :user')
+//            ->orderBy('a.datepublished', 'DESC')
+//            ->setParameter('user', $user->getId())
+//            ->getQuery()
+//            ->getResult();
+//
+//        $entities = $paginator->paginate($pagination, $request->query->getInt('page', 1), 14);
+//
+//        return $this->render('news/show.html.twig',array(
+//            'user' => $user,
+//            'entities' => $entities
+//        ));
+
+        $jobs_query = $this->getDoctrine()
             ->getRepository(Job::class)
             ->findAll();
+
+        $jobs = $paginator->paginate(
+            $jobs_query, /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            2 /*limit per page*/
+        );
+
 
         return $this->render('job/index.html.twig', [
             'jobs' => $jobs,
         ]);
+
+
     }
 
     /**

@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Projects{% endblock %}
+
+{% block body %}
+    <h1>All jobs</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Status</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Images</th>
+                <th>Files</th>
+                <th>IsRemote</th>
+                <th>IsPermanent</th>
+                <th>PermanentType</th>
+                <th>CityOther</th>
+                <th>CitiesAllowed</th>
+                <th>SalaryType</th>
+                <th>SalaryCurrency</th>
+                <th>Salary</th>
+                <th>SalaryPayMethod</th>
+                <th>SalaryComment</th>
+                <th>SalaryRange</th>
+                <th>SalaryRangeFrom</th>
+                <th>SalaryRangeTo</th>
+                <th>ExperienceNumber</th>
+                <th>ExperienceDimension</th>
+                <th>SeekPeriod</th>
+                <th>SeekPeriodDimension</th>
+                <th>Education</th>
+                <th>AgeFrom</th>
+                <th>AgeTo</th>
+                <th>Skills</th>
+                <th>Languages</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for job in jobs %}
+            <tr>
+                <td>{{ job.id }}</td>
+                <td>{{ job.status }}</td>
+                <td>{{ job.title }}</td>
+                <td>{{ job.description }}</td>
+                <td>{{ job.images }}</td>
+                <td>{{ job.files }}</td>
+                <td>{{ job.isRemote }}</td>
+                <td>{{ job.isPermanent }}</td>
+                <td>{{ job.permanentType }}</td>
+                <td>{{ job.cityOther }}</td>
+                <td>{{ job.citiesAllowed }}</td>
+                <td>{{ job.salaryType }}</td>
+                <td>{{ job.salaryCurrency }}</td>
+                <td>{{ job.salary }}</td>
+                <td>{{ job.salaryPayMethod }}</td>
+                <td>{{ job.salaryComment }}</td>
+                <td>{{ job.salaryRange }}</td>
+                <td>{{ job.salaryRangeFrom }}</td>
+                <td>{{ job.salaryRangeTo }}</td>
+                <td>{{ job.experienceNumber }}</td>
+                <td>{{ job.experienceDimension }}</td>
+                <td>{{ job.seekPeriod }}</td>
+                <td>{{ job.seekPeriodDimension }}</td>
+                <td>{{ job.education }}</td>
+                <td>{{ job.ageFrom }}</td>
+                <td>{{ job.ageTo }}</td>
+                <td>{{ job.skills }}</td>
+                <td>{{ job.languages }}</td>
+                <td>{{ job.createdAt }}</td>
+                <td>{{ job.updatedAt }}</td>
+                <td>
+                    <a href="{{ path('job_show', {'id': job.id}) }}">show</a>
+                    <a href="{{ path('job_edit', {'id': job.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="31">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('job_new') }}" class="btn btn-primary">     <i class="fas fa-arrow-right" aria-hidden='true'></i> Create new</a>
+{% endblock %}
+
+ {% block stylesheets %}
+         {{ parent() }}
+         {{ encore_entry_link_tags('util') }}
+     {% endblock %}
+
+ {% block javascripts %}
+         {{ parent() }}
+         {{ encore_entry_script_tags('util') }}
+     {% endblock %}
