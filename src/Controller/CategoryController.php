@@ -34,7 +34,6 @@ class CategoryController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $catsRepository = $em->getRepository(Category::class);
 
-            // Search the cats that belongs to the city with the given id as GET parameter "cityid"
             $cats = $catsRepository->createQueryBuilder("q")
                 ->where("q.parentId = :parentId")
                 ->setParameter("parentId", $request->query->get("id"))
@@ -50,7 +49,7 @@ class CategoryController extends AbstractController
                 );
             }
 
-            // Return array with structure of the cats of the providen city id
+            // Return array with structure of the cats of the providen cat id
             return new JsonResponse($responseArray);
         } else {
             return $this->redirect('/');

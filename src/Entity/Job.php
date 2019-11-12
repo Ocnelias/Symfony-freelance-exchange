@@ -11,11 +11,34 @@ use Symfony\Component\HttpFoundation\File\File;
  * Job
  *
  * @ORM\Table(name="job", indexes={@ORM\Index(name="FK_city_id_job", columns={"city_id"}), @ORM\Index(name="FK_user_id_job", columns={"user_id"}), @ORM\Index(name="FK_category_id_job", columns={"category_id"}), @ORM\Index(name="FK_country_id_job", columns={"country_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\JobRepository")
  *
  */
 class Job
 {
+
+    const CURRENCY_USD = 'USD';
+    const CURRENCY_EUR = 'EUR';
+    const CURRENCY_UAH = 'UAH';
+
+    const TYPE_PERMANENT = 'Permanent job';
+    const TYPE_SINGLE = 'Single project';
+
+    public static function getCurrencyList() {
+        return [
+            self::CURRENCY_USD,
+            self::CURRENCY_EUR,
+            self::CURRENCY_UAH
+        ];
+    }
+
+    public static function getPermanentList() {
+        return [
+            self::TYPE_PERMANENT,
+            self::TYPE_SINGLE,
+        ];
+    }
+
 
     /**
      * @var int

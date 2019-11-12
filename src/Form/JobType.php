@@ -67,10 +67,7 @@ class JobType extends AbstractType
 
 
             ->add('isPermanent', ChoiceType::class, [
-                'choices'  => [
-                    'Single project'=> 1,
-                    'Permanent job' => 2,
-                ],
+                'choices'  =>  array_flip(Job::getPermanentList()),
                 'label' => 'job_permanent_label',
                 'choice_translation_domain' => 'messages',
             ])
@@ -79,13 +76,7 @@ class JobType extends AbstractType
             ->add('salary')
 
             ->add('salaryCurrency', ChoiceType::class, [
-                'choices'  => [
-                    'USD'=> 1,
-                    'EUR' => 2,
-                    'UAH' => 3,
-                ],
-                'label' => 'job_salary_currency',
-                'choice_translation_domain' => 'messages',
+                'choices'  => array_flip(Job::getCurrencyList()),
             ])
 
             ->add('salaryType', ChoiceType::class, [
@@ -102,12 +93,8 @@ class JobType extends AbstractType
             ->add('main_category', EntityType::class, [
                 'class' => Category::class,
                 'mapped' => false,
-                'placeholder' => 'Choose a category',
                 'choice_label' => 'title_' . $GLOBALS['request']->getLocale(),
                 'choices' => $this->categoryRepository->findMainCategories(),
-                'label' => 'Category',
-                'choice_translation_domain' => 'messages',
-
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,

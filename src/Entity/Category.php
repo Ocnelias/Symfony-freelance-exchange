@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Category
  *
  * @ORM\Table(name="category")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  */
 class Category
 {
@@ -59,6 +59,12 @@ class Category
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getLocalizedTitle(): ?string
+    {
+        $locale='title'.ucfirst($GLOBALS['request']->getLocale());
+        return  $this->{$locale};
     }
 
     public function getTitleEn(): ?string
@@ -121,14 +127,13 @@ class Category
         return $this;
     }
 
-    public function getMainCategories()
+    public static function getMainCategories()
     {
 
 
+            $list=[1,2,3];
+
+            return $list;
 
     }
-
-
-
-
 }

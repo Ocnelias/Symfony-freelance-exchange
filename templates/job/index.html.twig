@@ -10,58 +10,46 @@
             <!-- Row Start -->
             <div class="row">
 
+
+                <div class="col-lg-12">
+                    <!-- Search Widget -->
+                    <div class="widget search p-0">
+                        <div class="input-group">
+                            <form action="{{ path('job_index') }}" id="search-form" class="form-inline" method="get">
+
+                                <input type="text"
+                                       name="q"
+                                       id="search_title"
+                                       class="form-control"
+                                       placeholder="{{ 'Search a project'|trans }}..."
+                                       value="{{ app.request.get('q') }}"
+                                       autocomplete="off"
+                                       autofocus
+                                       data-no-results-message="{{ 'post.search_no_results'|trans }}" >
+
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-12">
+                    {{'Found Projects'|trans}}: <span id="show_count">{{ jobs.getTotalItemCount }}</span>
+                </div>
+
+
                 <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-0">
                     <!-- Recently Favorited -->
                     <div class="widget dashboard-container my-adslist">
-                        <h1 class="widget-header">{{'Found Projects'|trans}}: {{ jobs.getTotalItemCount }} </h1>
-                        <div class="count">
-                        </div>
-                        <table class="table table-responsive product-dashboard-table">
-                            <thead>
-                            <tr>
-                                <th>Image</th>
-                                <th>Product Title</th>
-                                <th class="text-center">Category</th>
-                                <th class="text-center">Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for job in jobs %}
-                            <tr>
 
-                                <td class="product-thumb">
-                                    <img width="80px" height="auto" src="/images/products/products-1.jpg" alt="image description"></td>
-                                <td class="product-details">
-                                    <h3 class="title"> {{ job.title }}</h3>
-                                    <span class="add-id"><strong>Ad ID:</strong> ng3D5hAMHPajQrM</span>
-                                    <span><strong>Posted on: </strong><time>{{ job.createdAt | date('d.m.Y') }}</time> </span>
-                                    <span class="status active"><strong>Status</strong>Active</span>
-                                    <span class="location"><strong>Author</strong>autor</span>
-                                </td>
-                                <td class="product-category"><span class="categories">Laptops</span></td>
-                                <td class="action" data-title="Action">
-                                    <div class="">
-                                        <ul class="list-inline justify-content-center">
-                                            <li class="list-inline-item">
-                                                <a data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="view" href="">
-                                                    <i class="fa fa-eye"></i>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a class="edit" href="">
-                                                    <i class="fa fa-pencil"></i>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a class="delete" href="">
-                                                    <i class="fa fa-trash"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            {% endfor %}
+                        <table class="table table-responsive job-dashboard-table">
+
+                            <tbody>
+
+                            {{ include('/job/search.ajax.twig') }}
+
+
                             </tbody>
                         </table>
                         <!-- Pagination -->
@@ -74,17 +62,29 @@
 
                 <div class="col-md-10 offset-md-1 col-lg-4 offset-lg-0">
                     <div class="sidebar">
-                        <!-- Search Widget -->
-                        <div class="widget search p-0">
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="expire" placeholder="Search...">
-                                <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                            </div>
-                        </div>
-                        <!-- Category Widget -->
+
+                        <!--Filter Widget -->
                         <div class="widget category">
                             <!-- Widget Header -->
-                            <h5 class="widget-header">Categories</h5>
+                            <h5 class="widget-header">{{'Categories'|trans}}</h5>
+                            <div class="parent-check">
+                                <input type="checkbox"><label>Level 1</label>
+                                <div class="child-check">
+                                    <input type="checkbox"><label>Level 1.1</label>
+                                    <div class="child-check">
+                                        <input type="checkbox"><label>Level 1.1.1</label>
+                                    </div>
+                                </div>
+                                <div class="child-check">
+                                    <input type="checkbox"><label>Level 1.2</label>
+                                </div>
+                            </div>
+                            <div class="parent-check">
+                                <input type="checkbox"><label>Level 2</label>
+                                <div class="child-check">
+                                    <input type="checkbox"><label>Level 2.1</label>
+                                </div>
+                            </div>
                             <ul class="category-list">
                                 <li><a href="">Appearel <span class="float-right">(2)</span></a></li>
                                 <li><a href="">Accesories <span class="float-right">(5)</span></a></li>
@@ -93,43 +93,8 @@
                                 <li><a href="">Education<span class="float-right">(9)</span></a></li>
                             </ul>
                         </div>
-                        <!-- Store Widget -->
-                        <div class="widget related-store">
-                            <!-- Widget Header -->
-                            <h5 class="widget-header">Related Store</h5>
-                            <ul class="store-list md list-inline">
-                                <li class="list-inline-item">
-                                    <a href=""><img src="images/popular-offer/populer-offer-02.png" alt="store-image"></a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href=""><img src="images/popular-offer/populer-offer-03.png" alt="store-image"></a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href=""><img src="images/popular-offer/populer-offer-04.png" alt="store-image"></a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href=""><img src="images/popular-offer/populer-offer-05.png" alt="store-image"></a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href=""><img src="images/popular-offer/populer-offer-06.png" alt="store-image"></a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href=""><img src="images/popular-offer/populer-offer-07.png" alt="store-image"></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- Archive Widget -->
-                        <div class="widget archive">
-                            <!-- Widget Header -->
-                            <h5 class="widget-header">Archives</h5>
-                            <ul class="archive-list">
-                                <li><a href="">January 2017</a></li>
-                                <li><a href="">February 2017</a></li>
-                                <li><a href="">March 2017</a></li>
-                                <li><a href="">April 2017</a></li>
-                                <li><a href="">May 2017</a></li>
-                            </ul>
-                        </div>
+
+
                     </div>
                 </div>
 
@@ -142,3 +107,58 @@
 
 
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+
+        jQuery(document).ready(function($){
+
+            $('#search-form').keyup(function(e){
+
+
+                var input=$('#search_title').val();
+                if (input.length>0) {
+                    var insert_results= $('.job-dashboard-table tbody');
+                    var show_count= $('#show_count');
+                    insert_results.html("");
+                    show_count.html("");
+                    var url = '{{ path("job_search", {'search': 'input'}) }}';
+                    url = url.replace("input", input);
+                    $.get(url, function (data, textStatus, xhr) {
+                        data.count===0 ?show_count.html(0) : show_count.html(data.count);
+
+                        if ("object" !== typeof data || null === data) {
+                            console.log("Unexpected response from server.");
+                            return;
+                        }
+
+                        if (!data.hasOwnProperty("html") || typeof data.html != "string" || (data.html = data.html.trim()).length < 1) {
+                            return;
+                        }
+
+                        insert_results.html(data.html);
+
+
+                    }).fail(function (xhr, textStatus, errorThrown) {
+
+                        var error = "Unknown error occurred.";
+                        if ("object" === typeof xhr && null !== xhr && xhr.hasOwnProperty("responseJSON") && "object" === typeof xhr.responseJSON && xhr.responseJSON.hasOwnProperty("error") && "string" === typeof xhr.responseJSON.error && xhr.responseJSON.error.trim().length >= 1) {
+                            error = xhr.responseJSON.error.trim();
+                        } else if ("string" === typeof errorThrown && errorThrown.trim().length >= 1) {
+                            error = errorThrown.trim();
+                        }
+
+                        console.log(error);
+
+                    });
+                }
+
+            });
+
+        });
+     </script>
+
+
+{% endblock %}
+

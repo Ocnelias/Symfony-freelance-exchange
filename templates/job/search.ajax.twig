@@ -1,0 +1,22 @@
+{% for job in jobs %}
+    <tr>
+
+        <td class="product-thumb">
+            <span class="status salary_active">  <b> {{ job.salary }}  {{ job.getCurrencyList[job.salaryCurrency] }} </b>  </span>
+        </td>
+        <td class="product-details">
+            <h3 class="title"> <a href='{{ path('job_show', {id: job.id} )  }}'>{{ job.title }}</a></h3>
+            <span class="add-id"><strong>{{'Project type'|trans}}:</strong> {{ job.getPermanentList()[job.isPermanent] }} </span> <br>
+            <span><strong>{{'Posted on'|trans}}: </strong><time>{{ job.createdAt |ago }}</time> </span>
+            <span> <br> </span>
+
+            <span>  {{ job.description|truncate(100, true)  }} </span>
+            {#<span class="status active"><strong>Status</strong>Active</span>
+            <span class="location"><strong>Author</strong>autor</span>#}
+        </td>
+        <td class="product-category"><span class="categories">{{ job.category.getLocalizedTitle }}</span></td>
+        <td class="product-category" data-title="Action">
+            <a href='{{ path('job_show', {id: job.id} )  }}'>{{ 'Деталі'|trans }}>></a>
+        </td>
+    </tr>
+{% endfor %}

@@ -12,7 +12,6 @@ homepage:
     _locale: '%app_locales%'
 
   defaults:
-    template: homepage.html.twig
     _locale: '%locale%'
 
     logout:

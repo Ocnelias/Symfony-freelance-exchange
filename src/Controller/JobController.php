@@ -3,12 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Job;
+use App\Entity\Category;
 use App\Form\JobType;
+use App\Repository\JobRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * @Route("/job")
@@ -20,24 +23,7 @@ class JobController extends AbstractController
      */
     public function index(Request $request, PaginatorInterface $paginator): Response
     {
-//        $em = $this->getDoctrine()->getManager();
-//
-//        $repoArticles = $em->getRepository('App:News');
-//
-//        $pagination = $repoArticles->createQueryBuilder('a')
-//            ->where('a.published = 1')
-//            ->andWhere('a.author = :user')
-//            ->orderBy('a.datepublished', 'DESC')
-//            ->setParameter('user', $user->getId())
-//            ->getQuery()
-//            ->getResult();
-//
-//        $entities = $paginator->paginate($pagination, $request->query->getInt('page', 1), 14);
-//
-//        return $this->render('news/show.html.twig',array(
-//            'user' => $user,
-//            'entities' => $entities
-//        ));
+
 
         $jobs_query = $this->getDoctrine()
             ->getRepository(Job::class)
@@ -46,7 +32,7 @@ class JobController extends AbstractController
         $jobs = $paginator->paginate(
             $jobs_query, /* query NOT result */
             $request->query->getInt('page', 1), /*page number*/
-            2 /*limit per page*/
+            10 /*limit per page*/
         );
 
 
@@ -151,5 +137,32 @@ class JobController extends AbstractController
         }
 
         return $this->redirectToRoute('job_index');
+    }
+
+
+    /**
+     * Search action.
+     * @Route("/job_search/{search}", name="job_search")
+     * @param  Request               $request Request instance
+     * @param  string                $search  Search term
+     * @return Response|JsonResponse          Response instance
+     */
+    public function search(Request $request, string $search)
+    {
+        if (!$request->isXmlHttpRequest()) {
+            return $this->render("job/index.html.twig");
+        }
+
+        $searchTerm = trim($request->query->get("search", $search));
+
+        $em = $this->getDoctrine()->getManager();
+        $results = $em->getRepository(Job::class)->findByTitle($searchTerm);
+
+
+
+        return new JsonResponse([
+            "html" => $this->renderView("job/search.ajax.twig", ["jobs" => $results]),
+            "count" => count($results),
+        ]);
     }
 }

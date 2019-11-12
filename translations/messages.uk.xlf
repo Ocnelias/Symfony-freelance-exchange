@@ -5,6 +5,14 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
+         <trans-unit id="1" resname="Permanent job">
+            <source>Permanent job</source>
+            <target>Постійна робота</target>
+          </trans-unit>
+              <trans-unit id="2" resname="Single project">
+            <source>Single project</source>
+            <target>Разовий проект</target>
+          </trans-unit>
       <trans-unit id="0azKJvE" resname="title.homepage">
         <source>title.homepage</source>
         <target>Ласкаво просимо!</target>
@@ -15,79 +23,79 @@
       </trans-unit>
       <trans-unit id="x5Pg2aH" resname="Registration">
         <source>Registration</source>
-        <target>__Registration</target>
+        <target>Registration</target>
       </trans-unit>
       <trans-unit id="u3I07BJ" resname="Register">
         <source>Register</source>
-        <target>__Register</target>
+        <target>Register</target>
       </trans-unit>
       <trans-unit id="OnhpU4i" resname="Home">
         <source>Home</source>
-        <target>__Home</target>
+        <target>Home</target>
       </trans-unit>
       <trans-unit id="K9GQWvj" resname="Personal area">
         <source>Personal area</source>
-        <target>__Personal area</target>
+        <target>Personal area</target>
       </trans-unit>
       <trans-unit id="nWMiwfT" resname="Login">
         <source>Login</source>
-        <target>__Login</target>
+        <target>Login</target>
       </trans-unit>
       <trans-unit id="pnuu_tK" resname="Post a project">
         <source>Post a project</source>
-        <target>__Post a project</target>
+        <target>Post a project</target>
       </trans-unit>
       <trans-unit id="Md4W_hV" resname="footer.main_text">
         <source>footer.main_text</source>
-        <target>__footer.main_text</target>
+        <target>footer.main_text</target>
       </trans-unit>
       <trans-unit id="6lNn5LO" resname="Site Pages">
         <source>Site Pages</source>
-        <target>__Site Pages</target>
+        <target>Site Pages</target>
       </trans-unit>
       <trans-unit id="XcN0dkQ" resname="All Rights Reserved">
         <source>All Rights Reserved</source>
-        <target>__All Rights Reserved</target>
+        <target>All Rights Reserved</target>
       </trans-unit>
       <trans-unit id="DiImtSN" resname="Welcome">
         <source>Welcome</source>
-        <target>__Welcome</target>
+        <target>Welcome</target>
       </trans-unit>
       <trans-unit id="_uBgoMT" resname="Job search">
         <source>Job search</source>
-        <target>__Job search</target>
+        <target>Job search</target>
       </trans-unit>
       <trans-unit id="MZ.kV5K" resname="main_slogan">
         <source>main_slogan</source>
-        <target>__main_slogan</target>
+        <target>main_slogan</target>
       </trans-unit>
       <trans-unit id="6a4mZFu" resname="second_slogan">
         <source>second_slogan</source>
-        <target>__second_slogan</target>
+        <target>second_slogan</target>
       </trans-unit>
       <trans-unit id="wBz8uBu" resname="Popular Category">
         <source>Popular Category</source>
-        <target>__Popular Category</target>
+        <target>Popular Category</target>
       </trans-unit>
       <trans-unit id="JEIQ5IQ" resname="project">
         <source>project</source>
-        <target>__project</target>
+        <target>project</target>
       </trans-unit>
       <trans-unit id="VvIWlaZ" resname="SEARCH">
         <source>SEARCH</source>
-        <target>__SEARCH</target>
+        <target>SEARCH</target>
       </trans-unit>
       <trans-unit id="XmW2PRj" resname="Projects by categories">
         <source>Projects by categories</source>
-        <target>__Projects by categories</target>
+        <target>Projects by categories</target>
       </trans-unit>
       <trans-unit id="FQn1YfJ" resname="Save">
         <source>Save</source>
-        <target>__Save</target>
+        <target>Save</target>
       </trans-unit>
       <trans-unit id="pB6yv3J" resname="New project">
         <source>New project</source>
-        <target>__New project</target>
+        <target>New project</target>
       </trans-unit>
       <trans-unit id="I.yaKf0" resname="Create a new project">
         <source>Create a new project</source>
@@ -95,11 +103,11 @@
       </trans-unit>
       <trans-unit id="wYmEDPf" resname="Log in">
         <source>Log in</source>
-        <target>__Log in</target>
+        <target>Log in</target>
       </trans-unit>
       <trans-unit id="dDUw20Q" resname="Please sign in">
         <source>Please sign in</source>
-        <target>__Please sign in</target>
+        <target>Please sign in</target>
       </trans-unit>
       <trans-unit id="0KGyJED" resname="title_placeholder">
         <source>title_placeholder</source>
@@ -129,6 +137,55 @@
         <source>title</source>
         <target>Назва проекту</target>
       </trans-unit>
+      <trans-unit id="pXsIpIC" resname="Previous">
+        <source>Previous</source>
+        <target>Previous</target>
+      </trans-unit>
+      <trans-unit id="H.V6Kdf" resname="Next">
+        <source>Next</source>
+        <target>Next</target>
+      </trans-unit>
+      <trans-unit id="fozSBW2" resname="Title">
+        <source>Title</source>
+        <target>Title</target>
+      </trans-unit>
+      <trans-unit id="Um4Ah8w" resname="Description">
+        <source>Description</source>
+        <target>Description</target>
+      </trans-unit>
+      <trans-unit id="RBvXhuL" resname="What needs to be done">
+        <source>What needs to be done</source>
+        <target>What needs to be done</target>
+      </trans-unit>
+      <trans-unit id="iIuU8zB" resname="Salary">
+        <source>Salary</source>
+        <target>Salary</target>
+      </trans-unit>
+      <trans-unit id="ZMP7ski" resname="за">
+        <source>за</source>
+        <target>за</target>
+      </trans-unit>
+      <trans-unit id="QwWFdib" resname="Agree to">
+        <source>Agree to</source>
+        <target>Agree to</target>
+      </trans-unit>
+      <trans-unit id="_oBEmYS" resname="our Terms and conditions">
+        <source>our Terms and conditions</source>
+        <target>our Terms and conditions</target>
+      </trans-unit>
+      <trans-unit id="MQBzByg" resname="Found Projects">
+        <source>Found Projects</source>
+        <target>Found Projects</target>
+      </trans-unit>
+      <trans-unit id="gW4h5dt" resname="Project type">
+        <source>Project type</source>
+        <target>Project type</target>
+      </trans-unit>
+      <trans-unit id="qwcKPwm" resname="Posted on">
+        <source>Posted on</source>
+        <target>Posted on</target>
+      </trans-unit>
+
     </body>
   </file>
 </xliff>

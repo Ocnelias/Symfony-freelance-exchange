@@ -220,6 +220,8 @@
                     <p></p>
                 </div>
                 <div class="row">
+
+            {#        {% for cat in Categories::getMainCategories() %}#}
                     <!-- Category list -->
                     <div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
                         <div class="category-block">
@@ -235,6 +237,10 @@
                             </ul>
                         </div>
                     </div> <!-- /Category List -->
+
+{#
+                    {% endfor %}
+#}
                     <!-- Category list -->
                     <div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6 col-6">
                         <div class="category-block">
