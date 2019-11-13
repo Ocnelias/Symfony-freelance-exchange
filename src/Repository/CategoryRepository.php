@@ -34,4 +34,35 @@ class CategoryRepository extends ServiceEntityRepository
         ->execute()
             ;
     }
+
+    /**
+     * @return Category[]
+     */
+    public function getCategoryList()
+    {
+        $list=[];
+
+        foreach ($this->findMainCategories() as $mainCategory) {
+            $list[$mainCategory->getId()][$mainCategory->getId()] = $mainCategory->getLocalizedTitle();
+        }
+
+        foreach ($list as $key=>$cat){
+            $subcats= $this->createQueryBuilder('s')
+                ->andWhere('s.parentId = :val')
+                ->setParameter('val', $key)
+                ->orderBy('s.id', 'ASC')
+                ->setMaxResults(100)
+                ->getQuery()
+                ->execute()
+            ;
+
+            foreach ($subcats as $subcat){
+                $list[$key][$subcat->getId()] = $subcat->getLocalizedTitle();
+            }
+        }
+
+        return $list ;
+    }
+
+
 }

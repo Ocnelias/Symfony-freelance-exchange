@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Job;
 use App\Entity\Category;
 use App\Form\JobType;
+use App\Form\JobTypeSearch;
 use App\Repository\JobRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,11 +24,18 @@ class JobController extends AbstractController
      */
     public function index(Request $request, PaginatorInterface $paginator): Response
     {
+        $search_data=$request->query->get('job_type_search',null);
+        $search_cats=$request->query->get('search_category','');
+
+
+
+ /*       $search_is_permanent=$search_data['isPermanent'] ?? '';
+        $search_salar=$search_data['isPermanent'] ?? '';*/
 
 
         $jobs_query = $this->getDoctrine()
             ->getRepository(Job::class)
-            ->findAll();
+            ->findBySearchParams($search_data, $search_cats);
 
         $jobs = $paginator->paginate(
             $jobs_query, /* query NOT result */
@@ -35,9 +43,20 @@ class JobController extends AbstractController
             10 /*limit per page*/
         );
 
+        $job = new Job();
+        $form = $this->createForm(JobTypeSearch ::class, $job);
+
+        $cats= $this->getDoctrine()
+            ->getRepository(Category::class)
+            ->getCategoryList();
+
+
+
 
         return $this->render('job/index.html.twig', [
             'jobs' => $jobs,
+            'form' => $form->createView(),
+            'cats' => $cats,
         ]);
 
 

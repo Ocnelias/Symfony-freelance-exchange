@@ -1,4 +1,4 @@
-{{ form_start(form, {'attr': {'class': 'form-inline1'}}) }}
+{{ form_start(form, {'attr': {'class': ''}}) }}
 
 
 <div class="form-group">
@@ -47,18 +47,20 @@
 
 
 <div class="form-group form-check">
-    <label class="form-check-label">
-         {{'Confirm agree to'|trans}} <a href="{{ path('terms') }}"> {{'our Terms and conditions'|trans  }}</a>
-         {{ form_row(form.agreeTerms, { 'label': false, 'class' : 'form-check-input' }) }}
+
+        <label for="agree">
+            {{'Confirm agree to'|trans}} <a href="{{ path('terms') }}"> {{'our Terms and conditions'|trans  }}</a>
+        </label>
+         {{ form_row(form.agreeTerms, { 'label': false, 'class' : 'form-check-input', 'id':'agree' }) }}
 
 
-    </label>
+
 </div>
 
 
 
 
-<button type="submit" class="btn btn-primary">Submit</button>
+<button type="submit" class="btn btn-primary">{{'Submit'|trans}}</button>
 
 
 {{ form_end(form) }}

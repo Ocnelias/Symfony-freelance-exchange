@@ -15,14 +15,19 @@ class JobRepository extends ServiceEntityRepository
         parent::__construct($registry, Job::class);
     }
 
-    public function findAll()
+    public function findBySearchParams($search_data=null, $search_cats=null)
     {
-        return $this->createQueryBuilder('i')
-            ->orderBy('i.id', 'DESC')
-            ->setMaxResults(100)
-            ->getQuery()
-            ->execute()
-            ;
+
+        $query=$this->createQueryBuilder('i')
+            ->orderBy('i.id', 'DESC');
+
+        $search_data['isPermanent'] ? $query->where('i.isPermanent = :isPermanentVal')->setParameter('isPermanentVal', $search_data['isPermanent']) : '';
+        $search_data['salary_from'] ? $query->andWhere('i.salary > :salaryFromVal')->setParameter('salaryFromVal', $search_data['salary_from']) : '';
+        $search_data['salary_to'] ? $query->andWhere('i.salary < :salaryToVal')->setParameter('salaryToVal', $search_data['salary_to']) : '';
+        $search_cats ? $query->andWhere("i.category IN (:search_cats) ")->setParameter('search_cats', $search_cats): '';
+        $query->getQuery()->execute();
+
+        return $query;
     }
 
     public function findByTitle($q)
@@ -36,35 +41,7 @@ class JobRepository extends ServiceEntityRepository
             ->execute()
             ;
 
-     /*   return $this->createQueryBuilder('i')
-            ->orderBy('i.id', 'DESC')
-            ->setMaxResults(100)
-            ->getQuery()
-            ->execute()
-            ;*/
-
-
-
-
-
     }
 
-    /**
-     * @return Job[]
-     */
-    public function findAllGreaterThanPrice($price): array
-    {
-        $entityManager = $this->getEntityManager();
-
-        $query = $entityManager->createQuery(
-            'SELECT p
-            FROM App\Entity\Product p
-            WHERE p.price > :price
-            ORDER BY p.price ASC'
-        )->setParameter('price', $price);
-
-        // returns an array of Product objects
-        return $query->getResult();
-    }
 
 }

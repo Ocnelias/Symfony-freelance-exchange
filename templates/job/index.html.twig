@@ -3,13 +3,13 @@
 {% block title %}Projects{% endblock %}
 
 {% block body %}
-
     <section class="dashboard section">
         <!-- Container Start -->
         <div class="container">
             <!-- Row Start -->
             <div class="row">
 
+                <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css"/>
 
                 <div class="col-lg-12">
                     <!-- Search Widget -->
@@ -66,32 +66,67 @@
                         <!--Filter Widget -->
                         <div class="widget category">
                             <!-- Widget Header -->
-                            <h5 class="widget-header">{{'Categories'|trans}}</h5>
-                            <div class="parent-check">
-                                <input type="checkbox"><label>Level 1</label>
-                                <div class="child-check">
-                                    <input type="checkbox"><label>Level 1.1</label>
-                                    <div class="child-check">
-                                        <input type="checkbox"><label>Level 1.1.1</label>
+                            <h5 class="widget-header">{{'Filters'|trans}}</h5>
+
+                            {{ form_start(form, {'method': 'get', 'attr': {'action': path('job_index')} }) }}
+
+
+
+                            <div class="form-group">
+                                {{ form_row(form.isPermanent, { 'label': 'Project type'|trans,  'value' :   app.request.get('job_type_search') ['isPermanent'] ?? '' }) }}
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-4">
+
+                                        {{ form_row(form.salary_from, { attr:{'placeholder': 'From'|trans} , 'label': 'Salary'|trans,  'value' :   app.request.get('job_type_search') ['salary_from'] ?? ''  }) }}
                                     </div>
-                                </div>
-                                <div class="child-check">
-                                    <input type="checkbox"><label>Level 1.2</label>
+                                    <div class="col-md-4">
+
+                                        {{ form_row(form.salary_to, { attr:{'placeholder': 'To'|trans} , 'label': 'Salary'|trans,  'value' :   app.request.get('job_type_search') ['salary_to'] ?? ''  }) }}
+                                    </div>
+                                    <div class="col-md-4">
+                                        {{ form_row(form.salaryCurrency, { 'label': ' ' }) }}
+                                    </div>
+
+
                                 </div>
                             </div>
-                            <div class="parent-check">
-                                <input type="checkbox"><label>Level 2</label>
-                                <div class="child-check">
-                                    <input type="checkbox"><label>Level 2.1</label>
-                                </div>
+
+
+                            <div class="form-group">
+                                <ul class="category-list">
+                                    <label>{{'Categories'|trans}}:</label>
+                                    {% for key,cat in cats %}
+                                    <li>
+
+                                         <input  id="cat_{{key}}"  type="checkbox" style="vertical-align: -2px;" name="search_category[]" {% if key in app.request.get('search_category') %} checked {% endif %}  value="{{key}}">
+                                         <label for="cat_{{key}}"> <a data-toggle="collapse" href="#collapse_{{ key }}" role="button" aria-expanded="false" aria-controls="">{{ cat[key] }} <span class="float-right"></span></a>
+                                         </label>
+                                    </li>
+
+                                    <div class="collapse" id="collapse_{{ key }}">
+                                        <div class="card card-body">
+                                        {% for subkey,subcat in cat|slice(1,100,true) %}
+                                            <label>  <input type="checkbox"  name="search_category[]" value="{{subkey}}" {% if subkey in app.request.get('search_category') %} checked {% endif %} }}> {{subkey}}  {{subcat}} </label>
+                                        {% endfor %}
+                                        </div>
+                                    </div>
+
+                                    {% endfor %}
+
+
+                                </ul>
+
                             </div>
-                            <ul class="category-list">
-                                <li><a href="">Appearel <span class="float-right">(2)</span></a></li>
-                                <li><a href="">Accesories <span class="float-right">(5)</span></a></li>
-                                <li><a href="">Business<span class="float-right">(7)</span></a></li>
-                                <li><a href="">Entertaiment<span class="float-right">(3)</span></a></li>
-                                <li><a href="">Education<span class="float-right">(9)</span></a></li>
-                            </ul>
+
+                            <button type="submit" class="btn btn-primary">{{'Filter'|trans}}</button>
+                            <a href="{{ path('job_index') }}" class="btn btn-default">{{'Clear filters'|trans}}</a>
+
+                            {{ form_end(form) }}
+
                         </div>
 
 
@@ -155,6 +190,16 @@
                 }
 
             });
+
+            $("#accordion").accordion({
+                'collapsible': true,
+                'active': null,
+                'heightStyle': 'content'
+            });
+            $('.jquery').each(function () {
+                eval($(this).html());
+            });
+            $('.button').button();
 
         });
      </script>
