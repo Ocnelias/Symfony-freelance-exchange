@@ -46,15 +46,10 @@ class JobTypeSearch extends AbstractType
                 'mapped' => false,
             ])
 
-          /*  ->add('search_category', null, [
-                'mapped' => false,
-            ])*/
-
 
             ->add('salaryCurrency', ChoiceType::class, [
                 'choices'  => array_flip(Job::getCurrencyList()),
                 'required'  =>  false,
-                'data' => 0
             ])
         ;
 

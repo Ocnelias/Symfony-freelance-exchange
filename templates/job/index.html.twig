@@ -88,7 +88,7 @@
                                         {{ form_row(form.salary_to, { attr:{'placeholder': 'To'|trans} , 'label': 'Salary'|trans,  'value' :   app.request.get('job_type_search') ['salary_to'] ?? ''  }) }}
                                     </div>
                                     <div class="col-md-4">
-                                        {{ form_row(form.salaryCurrency, { 'label': ' ' }) }}
+                                        {{ form_row(form.salaryCurrency, { 'value': app.request.get('job_type_search')['salaryCurrency'] ?? "0" , 'label': 'Currency'|trans}) }}
                                     </div>
 
 

@@ -1,138 +1,202 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Job{% endblock %}
+{% block title %}{{'Job details'|trans}} - {{ job.title }} {% endblock %}
 
 {% block body %}
-    <h1>Job</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ job.id }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ job.status }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ job.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ job.description }}</td>
-            </tr>
-            <tr>
-                <th>Images</th>
-                <td>{{ job.images }}</td>
-            </tr>
-            <tr>
-                <th>Files</th>
-                <td>{{ job.files }}</td>
-            </tr>
-            <tr>
-                <th>IsRemote</th>
-                <td>{{ job.isRemote }}</td>
-            </tr>
-            <tr>
-                <th>IsPermanent</th>
-                <td>{{ job.isPermanent }}</td>
-            </tr>
-            <tr>
-                <th>PermanentType</th>
-                <td>{{ job.permanentType }}</td>
-            </tr>
-            <tr>
-                <th>CityOther</th>
-                <td>{{ job.cityOther }}</td>
-            </tr>
-            <tr>
-                <th>CitiesAllowed</th>
-                <td>{{ job.citiesAllowed }}</td>
-            </tr>
-            <tr>
-                <th>SalaryType</th>
-                <td>{{ job.salaryType }}</td>
-            </tr>
-            <tr>
-                <th>SalaryCurrency</th>
-                <td>{{ job.salaryCurrency }}</td>
-            </tr>
-            <tr>
-                <th>Salary</th>
-                <td>{{ job.salary }}</td>
-            </tr>
-            <tr>
-                <th>SalaryPayMethod</th>
-                <td>{{ job.salaryPayMethod }}</td>
-            </tr>
-            <tr>
-                <th>SalaryComment</th>
-                <td>{{ job.salaryComment }}</td>
-            </tr>
-            <tr>
-                <th>SalaryRange</th>
-                <td>{{ job.salaryRange }}</td>
-            </tr>
-            <tr>
-                <th>SalaryRangeFrom</th>
-                <td>{{ job.salaryRangeFrom }}</td>
-            </tr>
-            <tr>
-                <th>SalaryRangeTo</th>
-                <td>{{ job.salaryRangeTo }}</td>
-            </tr>
-            <tr>
-                <th>ExperienceNumber</th>
-                <td>{{ job.experienceNumber }}</td>
-            </tr>
-            <tr>
-                <th>ExperienceDimension</th>
-                <td>{{ job.experienceDimension }}</td>
-            </tr>
-            <tr>
-                <th>SeekPeriod</th>
-                <td>{{ job.seekPeriod }}</td>
-            </tr>
-            <tr>
-                <th>SeekPeriodDimension</th>
-                <td>{{ job.seekPeriodDimension }}</td>
-            </tr>
-            <tr>
-                <th>Education</th>
-                <td>{{ job.education }}</td>
-            </tr>
-            <tr>
-                <th>AgeFrom</th>
-                <td>{{ job.ageFrom }}</td>
-            </tr>
-            <tr>
-                <th>AgeTo</th>
-                <td>{{ job.ageTo }}</td>
-            </tr>
-            <tr>
-                <th>Skills</th>
-                <td>{{ job.skills }}</td>
-            </tr>
-            <tr>
-                <th>Languages</th>
-                <td>{{ job.languages }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ job.createdAt }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ job.updatedAt }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <section class="section bg-gray">
+        <!-- Container Start -->
+        <div class="container">
+            <div class="row">
+                <!-- Left sidebar -->
+                <div class="col-md-8">
+                    <div class="product-details">
+                        <h1 class="product-title">{{ job.title }}</h1>
+                        <div class="product-meta">
+                            <ul class="list-inline">
+                                <li class="list-inline-item"><i class="fa fa-user-o"></i> {{'Author'|trans}} <a href="">Andrew</a></li>
+                                <li class="list-inline-item"><i class="fa fa-folder-open-o"></i> {{'Category'|trans}} <a href="">{{ job.category.getLocalizedTitle() }} </a></li>
+                                <li class="list-inline-item"><i class="fa fa-location-arrow"></i> {{'Project type'|trans}} <a href="">{{ job.getIsPermanent() }} </a></li>
+                            </ul>
+                        </div>
+                        <div class="content">
+                            <ul class="nav nav-pills  justify-content-center" id="pills-tab" role="tablist">
 
-    <a href="{{ path('job_index') }}">back to list</a>
+                            </ul>
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                    <h3 class="tab-title"> {{'Project Details'|trans}} </h3>
+                                    <p>
+                                        {{ job.description }}
+                                    </p>
 
-    <a href="{{ path('job_edit', {'id': job.id}) }}">edit</a>
+                                    <h3 class="tab-title"> {{'Applications'|trans}} </h3>
+                                    <div class="product-review">
+                                        <div class="media">
+                                            <!-- Avater -->
+                                            <img src="images/user/user-thumb.jpg" alt="avater">
+                                            <div class="media-body">
+                                                <!-- Ratings -->
+                                                <div class="ratings">
+                                                    <ul class="list-inline">
+                                                        <li class="list-inline-item">
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="name">
+                                                    <h5>Jessica Brown</h5>
+                                                </div>
+                                                <div class="date">
+                                                    <p>Mar 20, 2018</p>
+                                                </div>
+                                                <div class="review-comment">
+                                                    <p>
+                                                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremqe laudant tota rem ape riamipsa eaque.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="review-submission">
+                                            <h3 class="tab-title">Submit your review</h3>
+                                            <!-- Rate -->
+                                            <div class="rate">
+                                                <div class="starrr"></div>
+                                            </div>
+                                            <div class="review-submit">
+                                                <form action="#" class="row">
+                                                    <div class="col-lg-6">
+                                                        <input type="text" name="name" id="name" class="form-control" placeholder="Name">
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <textarea name="review" id="review" rows="10" class="form-control" placeholder="Message"></textarea>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <button type="submit" class="btn btn-main">Sumbit</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
 
-    {{ include('job/_delete_form.html.twig') }}
+
+
+
+                                </div>
+                                <div class="tab-pane fade" id="pills-app" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                    <h3 class="tab-title">Product Review</h3>
+                                    <div class="product-review">
+                                        <div class="media">
+                                            <!-- Avater -->
+                                            <img src="images/user/user-thumb.jpg" alt="avater">
+                                            <div class="media-body">
+                                                <!-- Ratings -->
+                                                <div class="ratings">
+                                                    <ul class="list-inline">
+                                                        <li class="list-inline-item">
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <i class="fa fa-star"></i>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="name">
+                                                    <h5>Jessica Brown</h5>
+                                                </div>
+                                                <div class="date">
+                                                    <p>Mar 20, 2018</p>
+                                                </div>
+                                                <div class="review-comment">
+                                                    <p>
+                                                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremqe laudant tota rem ape riamipsa eaque.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="review-submission">
+                                            <h3 class="tab-title">Submit your review</h3>
+                                            <!-- Rate -->
+                                            <div class="rate">
+                                                <div class="starrr"></div>
+                                            </div>
+                                            <div class="review-submit">
+                                                <form action="#" class="row">
+                                                    <div class="col-lg-6">
+                                                        <input type="text" name="name" id="name" class="form-control" placeholder="Name">
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <textarea name="review" id="review" rows="10" class="form-control" placeholder="Message"></textarea>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <button type="submit" class="btn btn-main">Sumbit</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="sidebar">
+                        <div class="widget price text-center">
+                            <h4>{{'Price'|trans}}</h4>
+                            <p>{{ job.salary }} {{ job.salaryCurrency }} <br> {{'per'|trans}} {{ job.salaryType}} </p>
+                        </div>
+                        <!-- User Profile widget -->
+                        <div class="widget user">
+                            <img class="rounded-circle" src="images/user/user-thumb.jpg" alt="">
+                            <h4><a href="">Andrew</a></h4>
+                            <p class="member-time">{{'Member Since'|trans}}  Jun 27, 2017</p>
+                            <a href=""></a>
+                            <ul class="list-inline mt-20">
+                                <li class="list-inline-item"><a href="" class="btn btn-contact">{{'Contact'|trans}} </a></li>
+                            </ul>
+                        </div>
+                        <!-- Map Widget -->
+                        <div class="widget map">
+                            <div class="map">
+                                <div id="map"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Container End -->
+    </section>
 {% endblock %}
+
+

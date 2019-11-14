@@ -1,0 +1,138 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Job{% endblock %}
+
+{% block body %}
+    <h1>Job</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ job.id }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ job.status }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ job.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ job.description }}</td>
+            </tr>
+            <tr>
+                <th>Images</th>
+                <td>{{ job.images }}</td>
+            </tr>
+            <tr>
+                <th>Files</th>
+                <td>{{ job.files }}</td>
+            </tr>
+            <tr>
+                <th>IsRemote</th>
+                <td>{{ job.isRemote }}</td>
+            </tr>
+            <tr>
+                <th>IsPermanent</th>
+                <td>{{ job.isPermanent }}</td>
+            </tr>
+            <tr>
+                <th>PermanentType</th>
+                <td>{{ job.permanentType }}</td>
+            </tr>
+            <tr>
+                <th>CityOther</th>
+                <td>{{ job.cityOther }}</td>
+            </tr>
+            <tr>
+                <th>CitiesAllowed</th>
+                <td>{{ job.citiesAllowed }}</td>
+            </tr>
+            <tr>
+                <th>SalaryType</th>
+                <td>{{ job.salaryType }}</td>
+            </tr>
+            <tr>
+                <th>SalaryCurrency</th>
+                <td>{{ job.salaryCurrency }}</td>
+            </tr>
+            <tr>
+                <th>Salary</th>
+                <td>{{ job.salary }}</td>
+            </tr>
+            <tr>
+                <th>SalaryPayMethod</th>
+                <td>{{ job.salaryPayMethod }}</td>
+            </tr>
+            <tr>
+                <th>SalaryComment</th>
+                <td>{{ job.salaryComment }}</td>
+            </tr>
+            <tr>
+                <th>SalaryRange</th>
+                <td>{{ job.salaryRange }}</td>
+            </tr>
+            <tr>
+                <th>SalaryRangeFrom</th>
+                <td>{{ job.salaryRangeFrom }}</td>
+            </tr>
+            <tr>
+                <th>SalaryRangeTo</th>
+                <td>{{ job.salaryRangeTo }}</td>
+            </tr>
+            <tr>
+                <th>ExperienceNumber</th>
+                <td>{{ job.experienceNumber }}</td>
+            </tr>
+            <tr>
+                <th>ExperienceDimension</th>
+                <td>{{ job.experienceDimension }}</td>
+            </tr>
+            <tr>
+                <th>SeekPeriod</th>
+                <td>{{ job.seekPeriod }}</td>
+            </tr>
+            <tr>
+                <th>SeekPeriodDimension</th>
+                <td>{{ job.seekPeriodDimension }}</td>
+            </tr>
+            <tr>
+                <th>Education</th>
+                <td>{{ job.education }}</td>
+            </tr>
+            <tr>
+                <th>AgeFrom</th>
+                <td>{{ job.ageFrom }}</td>
+            </tr>
+            <tr>
+                <th>AgeTo</th>
+                <td>{{ job.ageTo }}</td>
+            </tr>
+            <tr>
+                <th>Skills</th>
+                <td>{{ job.skills }}</td>
+            </tr>
+            <tr>
+                <th>Languages</th>
+                <td>{{ job.languages }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ job.createdAt }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ job.updatedAt }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('job_index') }}">back to list</a>
+
+    <a href="{{ path('job_edit', {'id': job.id}) }}">edit</a>
+
+    {{ include('job/_delete_form.html.twig') }}
+{% endblock %}
