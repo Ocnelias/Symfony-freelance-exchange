@@ -404,7 +404,7 @@ class Job
 
     public function getIsPermanent(): ?string
     {
-        return $this->getPermanentList()[$this->isPermanent];
+        return $this->isPermanent;
     }
 
     public function setIsPermanent(?int $isPermanent): self

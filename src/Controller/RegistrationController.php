@@ -21,10 +21,8 @@ class RegistrationController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator, AuthorizationCheckerInterface $authChecker): Response
     {
-        if (true === $authChecker->isGranted('USER')){
-
-            echo 'already registered'; die();
-
+        if (true === $authChecker->isGranted('ROLE_USER')){
+            return $this->redirect('/');
         }
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);

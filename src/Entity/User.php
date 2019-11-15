@@ -4,119 +4,38 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * User
- *
- * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="password_reset_token", columns={"password_reset_token"}), @ORM\UniqueConstraint(name="email", columns={"email"}), @ORM\UniqueConstraint(name="username", columns={"username"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User implements UserInterface, \Serializable
+class User implements UserInterface
 {
     /**
-     * @var int
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
     private $id;
 
-
     /**
-     * @var array
-     *
-     * @ORM\Column(type="json")
-     */
-     private $roles = ['Admin','Moderator','Employer','Seeker'];
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string")
-     */
-    private $password;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="password_reset_token", type="string", length=255, nullable=true)
-     */
-    private $passwordResetToken;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255, unique=true, nullable=false)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="username", type="string", length=255, nullable=false)
+     * @ORM\Column(type="json")
      */
-    private $username;
+    private $roles = [];
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="status", type="smallint", nullable=false, options={"default"="10"})
+     * @var string The hashed password
+     * @ORM\Column(type="string")
      */
-    private $status = '10';
-
-    /**
-     *
-     * @ORM\Column(type="integer", nullable=true)
-     * @Gedmo\Timestampable(on="create")
-     */
-    private $createdAt;
-
-    /**
-     * @ORM\Column(type="integer",  nullable=true)
-     * @Gedmo\Timestampable(on="update")
-     */
-    private $updatedAt;
-
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="user_type", type="string", length=255, nullable=true)
-     */
-    private $userType;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="company", type="string", length=255, nullable=true)
-     */
-    private $company;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="newsletter", type="integer", nullable=true)
-     */
-    private $newsletter;
+    private $password;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-
-    public function getPasswordResetToken(): ?string
-    {
-        return $this->passwordResetToken;
-    }
-
-    public function setPasswordResetToken(?string $passwordResetToken): self
-    {
-        $this->passwordResetToken = $passwordResetToken;
-
-        return $this;
     }
 
     public function getEmail(): ?string
@@ -131,162 +50,64 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getUsername(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUsername(): string
     {
-        return $this->email;
-    }
-
-    public function setUsername(string $username): self
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    public function getStatus(): ?int
-    {
-        return $this->status;
-    }
-
-    public function setStatus(int $status): self
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?int
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(int $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?int
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(int $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    public function getUserType(): ?string
-    {
-        return $this->userType;
-    }
-
-    public function setUserType(?string $userType): self
-    {
-        $this->userType = $userType;
-
-        return $this;
-    }
-
-    public function getCompany(): ?string
-    {
-        return $this->company;
-    }
-
-    public function setCompany(?string $company): self
-    {
-        $this->company = $company;
-
-        return $this;
-    }
-
-    public function getNewsletter(): ?int
-    {
-        return $this->newsletter;
-    }
-
-    public function setNewsletter(?int $newsletter): self
-    {
-        $this->newsletter = $newsletter;
-
-        return $this;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): void
-    {
-        $this->password = $password;
+        return (string) $this->email;
     }
 
     /**
-     * Returns the roles or permissions granted to the user for security.
+     * @see UserInterface
      */
     public function getRoles(): array
     {
         $roles = $this->roles;
-
-        // guarantees that a user always has at least one role for security
-        if (empty($roles)) {
-            $roles[] = 'ROLE_USER';
-        }
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }
 
-    public function setRoles(array $roles): void
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+
+        return $this;
     }
 
     /**
-     * Returns the salt that was originally used to encode the password.
-     *
-     * {@inheritdoc}
+     * @see UserInterface
      */
-    public function getSalt(): ?string
+    public function getPassword(): string
     {
-        // See "Do you need to use a Salt?" at https://symfony.com/doc/current/cookbook/security/entity_provider.html
-        // we're using bcrypt in security.yml to encode the password, so
-        // the salt value is built-in and you don't have to generate one
+        return (string) $this->password;
+    }
 
-        return null;
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
     }
 
     /**
-     * Removes sensitive data from the user.
-     *
-     * {@inheritdoc}
+     * @see UserInterface
      */
-    public function eraseCredentials(): void
+    public function getSalt()
     {
-        // if you had a plainPassword property, you'd nullify it here
+        // not needed when using the "bcrypt" algorithm in security.yaml
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function serialize(): string
-    {
-        // add $this->salt too if you don't use Bcrypt or Argon2i
-        return serialize([$this->id, $this->username, $this->password]);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function unserialize($serialized): void
-    {
-        // add $this->salt too if you don't use Bcrypt or Argon2i
-        [$this->id, $this->username, $this->password] = unserialize($serialized, ['allowed_classes' => false]);
-    }
-
-
 }
