@@ -110,7 +110,7 @@
                                     <div class="collapse" id="collapse_{{ key }}">
                                         <div class="card card-body">
                                         {% for subkey,subcat in cat|slice(1,100,true) %}
-                                            <label>  <input type="checkbox"  name="search_category[]" value="{{subkey}}" {% if subkey in app.request.get('search_category') %} checked {% endif %} }}> {{subkey}}  {{subcat}} </label>
+                                            <label>  <input type="checkbox"  name="search_category[]" value="{{subkey}}" {% if subkey in app.request.get('search_category') %} checked {% endif %} }}> {{subcat}} </label>
                                         {% endfor %}
                                         </div>
                                     </div>

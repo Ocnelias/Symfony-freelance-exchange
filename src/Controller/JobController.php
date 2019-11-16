@@ -27,12 +27,6 @@ class JobController extends AbstractController
         $search_data=$request->query->get('job_type_search',null);
         $search_cats=$request->query->get('search_category','');
 
-
-
- /*       $search_is_permanent=$search_data['isPermanent'] ?? '';
-        $search_salar=$search_data['isPermanent'] ?? '';*/
-
-
         $jobs_query = $this->getDoctrine()
             ->getRepository(Job::class)
             ->findBySearchParams($search_data, $search_cats);
@@ -49,8 +43,6 @@ class JobController extends AbstractController
         $cats= $this->getDoctrine()
             ->getRepository(Category::class)
             ->getCategoryList();
-
-
 
 
         return $this->render('job/index.html.twig', [
