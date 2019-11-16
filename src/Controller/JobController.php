@@ -61,6 +61,8 @@ class JobController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_EMPLOYER');
+
         $job = new Job();
         $job->setUser($this->getUser())->getId();
 
