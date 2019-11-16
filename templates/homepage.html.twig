@@ -39,17 +39,16 @@
                 </div>
                 <!-- Advance Search -->
                 <div class="advance-search">
-                    <form action="#">
+                    <form action="{{ path('job_index')  }}">
                         <div class="row">
                             <!-- Store Search -->
-                            <div class="col-lg-6 col-md-12">
+                            <div class="col-lg-10 col-md-12">
                                 <div class="block d-flex">
-                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" placeholder="{{'project'|trans }}">
+                                    <input type="text" name="q" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" placeholder="{{'project'|trans }}">
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-12">
+                            <div class="col-lg-2 col-md-12">
                                 <div class="block d-flex">
-                                    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="search" placeholder="">
                                     <!-- Search Button -->
                                     <button class="btn btn-main">{{'SEARCH'|trans }}</button>
                                 </div>
@@ -209,29 +208,6 @@
 =            All Category Section            =
 ===========================================-->
 
-    <ul class="category-list">
-        <label>{{'Categories'|trans}}:</label>
-        {% for key,cat in cats %}
-            <li>
-
-                <input  id="cat_{{key}}"  type="checkbox" style="vertical-align: -2px;" name="search_category[]" {% if key in app.request.get('search_category') %} checked {% endif %}  value="{{key}}">
-                <label for="cat_{{key}}"> <a data-toggle="collapse" href="#collapse_{{ key }}" role="button" aria-expanded="false" aria-controls="">{{ cat[key] }} <span class="float-right"></span></a>
-                </label>
-            </li>
-
-            <div class="collapse" id="collapse_{{ key }}">
-                <div class="card card-body">
-                    {% for subkey,subcat in cat|slice(1,100,true) %}
-                        <label>  <input type="checkbox"  name="search_category[]" value="{{subkey}}" {% if subkey in app.request.get('search_category') %} checked {% endif %} }}> {{subkey}}  {{subcat}} </label>
-                    {% endfor %}
-                </div>
-            </div>
-
-        {% endfor %}
-
-
-    </ul>
-
 <section class=" section">
     <!-- Container Start -->
     <div class="container">
@@ -250,7 +226,7 @@
                         <div class="category-block">
                             <div class="header">
                                 <i class="fa fa-list-alt" aria-hidden="true"></i>
-                                <h4>{{ cat[key] }}</h4>
+                                <h4><a href="{{ path('job_index', {search_main_category: key} )  }}"> {{ cat[key] }} </a></h4>
                             </div>
                             <ul class="category-list" >
                                 {% for subkey,subcat in cat|slice(1,5,true) %}

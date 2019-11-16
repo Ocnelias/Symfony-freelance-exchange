@@ -24,12 +24,14 @@ class JobController extends AbstractController
      */
     public function index(Request $request, PaginatorInterface $paginator): Response
     {
+        $search_by_title=$request->query->get('q',null);
         $search_data=$request->query->get('job_type_search',null);
         $search_cats=$request->query->get('search_category','');
+        $search_main_cats=$request->query->get('search_main_category','');
 
         $jobs_query = $this->getDoctrine()
             ->getRepository(Job::class)
-            ->findBySearchParams($search_data, $search_cats);
+            ->findBySearchParams($search_by_title, $search_data, $search_cats, $search_main_cats);
 
         $jobs = $paginator->paginate(
             $jobs_query, /* query NOT result */
