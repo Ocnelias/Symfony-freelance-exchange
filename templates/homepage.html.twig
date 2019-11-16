@@ -19,20 +19,16 @@
                     <div class="short-popular-category-list text-center">
                         <h2>{{'Popular Category'|trans }}</h2>
                         <ul class="list-inline">
+
+                            {% for key,cat in cats|slice(0,5,true) %}
                             <li class="list-inline-item">
-                                <a href=""><i class="fa fa-bed"></i> Hotel</a></li>
-                            <li class="list-inline-item">
-                                <a href=""><i class="fa fa-grav"></i> Fitness</a>
+                                <a href="{{ path('job_index', {search_main_category: key} )  }}">
+                                  {#  <i class="fa fa-arrow-right"></i> #}
+
+                                    {{cat[key]}}</a>
                             </li>
-                            <li class="list-inline-item">
-                                <a href=""><i class="fa fa-car"></i> Cars</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href=""><i class="fa fa-cutlery"></i> Restaurants</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href=""><i class="fa fa-coffee"></i> Cafe</a>
-                            </li>
+                            {% endfor %}
+
                         </ul>
                     </div>
 
@@ -249,3 +245,25 @@
 </section>
 
 {% endblock %}
+
+
+{#
+<i class="fas fa-laptop-code"></i>
+<i class="fas fa-laptop"></i>
+<i class="fas fa-share-alt-square"></i>
+
+
+<i class="fas fa-text-width"></i>
+<i class="fas fa-video"></i>
+<i class="fas fa-ad"></i>
+<i class="fas fa-network-wired"></i>
+
+<i class="fas fa-graduation-cap"></i>
+<i class="fas fa-tasks"></i>
+
+<i class="fas fa-cube"></i>
+
+<i class="fas fa-mobile-alt"></i>
+<i class="fas fa-business-time"></i>
+<i class="fas fa-building"></i>
+<i class="fas fa-photo-video"></i>#}
