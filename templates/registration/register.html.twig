@@ -19,11 +19,39 @@
 
                         {{ form_start(registrationForm) }}
 
-                        {{ form_widget(registrationForm) }}
+                        <div class="form-group">
+
+                                    {{ form_row(registrationForm.email, { 'label': 'Email'|trans }) }}
+                        </div>
+
+                            <div class="form-group">
+
+                            {{ form_row(registrationForm.plainPassword, { 'label': 'Password'|trans  }) }}
+                                </div>
+
+                            <div class="form-group">
+
+                                <div class="form-group form-check">
+
+                                    <label for="agree">
+                                        {{'Confirm agree to'|trans}} <a href="{{ path('terms') }}" target='_blank'> {{'our Terms and conditions'|trans  }}</a>
+                                    </label>
+                                    {{ form_row(registrationForm.agreeTerms, { 'label': false, 'class' : 'form-check-input', 'id':'agree' }) }}
+
+                                </div>
+
+                            </div>
+
+                        </div>
 
                          <button class="btn btn-primary">{{'Register'|trans }}</button>
 
                         {{ form_end(registrationForm) }}
+
+
+
+
+
 
 
                     </div>

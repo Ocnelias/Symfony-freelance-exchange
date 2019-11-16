@@ -5,14 +5,18 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
-         <trans-unit id="1" resname="Permanent job">
-            <source>Permanent job</source>
-            <target>Постійна робота</target>
-          </trans-unit>
-              <trans-unit id="2" resname="Single project">
-            <source>Single project</source>
-            <target>Разовий проект</target>
-          </trans-unit>
+      <trans-unit id="1" resname="Please enter an email">
+        <source>Please enter an email</source>
+        <target>Введіть email</target>
+      </trans-unit>
+      <trans-unit id="qjHRxCo" resname="Permanent job">
+        <source>Permanent job</source>
+        <target>Постійна робота</target>
+      </trans-unit>
+      <trans-unit id="Wuz6LP1" resname="Single project">
+        <source>Single project</source>
+        <target>Разовий проект</target>
+      </trans-unit>
       <trans-unit id="0azKJvE" resname="title.homepage">
         <source>title.homepage</source>
         <target>Ласкаво просимо!</target>
@@ -39,7 +43,7 @@
       </trans-unit>
       <trans-unit id="nWMiwfT" resname="Login">
         <source>Login</source>
-        <target>Login</target>
+        <target>Логін</target>
       </trans-unit>
       <trans-unit id="pnuu_tK" resname="Post a project">
         <source>Post a project</source>
@@ -113,14 +117,6 @@
         <source>title_placeholder</source>
         <target>Що потрібно зробити</target>
       </trans-unit>
-      <trans-unit id="Wuz6LP1" resname="Single project">
-        <source>Single project</source>
-        <target>Разовий проект</target>
-      </trans-unit>
-      <trans-unit id="qjHRxCo" resname="Permanent job">
-        <source>Permanent job</source>
-        <target>Постійна робота</target>
-      </trans-unit>
       <trans-unit id="qsTTNQH" resname="job_permanent_label">
         <source>job_permanent_label</source>
         <target>Тип проекту</target>
@@ -185,7 +181,106 @@
         <source>Posted on</source>
         <target>Posted on</target>
       </trans-unit>
-
+      <trans-unit id="lpzL089" resname="Email">
+        <source>Email</source>
+        <target>__Email</target>
+      </trans-unit>
+      <trans-unit id="588_9PF" resname="Password">
+        <source>Password</source>
+        <target>__Password</target>
+      </trans-unit>
+      <trans-unit id="pDU86.9" resname="Confirm agree to">
+        <source>Confirm agree to</source>
+        <target>__Confirm agree to</target>
+      </trans-unit>
+      <trans-unit id="0FJ_Sz1" resname="Logout">
+        <source>Logout</source>
+        <target>__Logout</target>
+      </trans-unit>
+      <trans-unit id="q8fpiSg" resname="Files">
+        <source>Files</source>
+        <target>__Files</target>
+      </trans-unit>
+      <trans-unit id="KSwG8AR" resname="Category">
+        <source>Category</source>
+        <target>__Category</target>
+      </trans-unit>
+      <trans-unit id="FV_BbAQ" resname="Submit">
+        <source>Submit</source>
+        <target>__Submit</target>
+      </trans-unit>
+      <trans-unit id="RZid5J_" resname="Details">
+        <source>Details</source>
+        <target>__Details</target>
+      </trans-unit>
+      <trans-unit id="6NjeC.q" resname="Search a project">
+        <source>Search a project</source>
+        <target>__Search a project</target>
+      </trans-unit>
+      <trans-unit id="_SSBmQW" resname="post.search_no_results">
+        <source>post.search_no_results</source>
+        <target>__post.search_no_results</target>
+      </trans-unit>
+      <trans-unit id="VG67jrm" resname="Filters">
+        <source>Filters</source>
+        <target>__Filters</target>
+      </trans-unit>
+      <trans-unit id="IYGXaTQ" resname="From">
+        <source>From</source>
+        <target>__From</target>
+      </trans-unit>
+      <trans-unit id="9LBu9tP" resname="To">
+        <source>To</source>
+        <target>__To</target>
+      </trans-unit>
+      <trans-unit id="OsGp7E_" resname="Currency">
+        <source>Currency</source>
+        <target>__Currency</target>
+      </trans-unit>
+      <trans-unit id="uLHYlMa" resname="Categories">
+        <source>Categories</source>
+        <target>__Categories</target>
+      </trans-unit>
+      <trans-unit id="Y44kn0o" resname="Filter">
+        <source>Filter</source>
+        <target>__Filter</target>
+      </trans-unit>
+      <trans-unit id="cXnqADX" resname="Clear filters">
+        <source>Clear filters</source>
+        <target>__Clear filters</target>
+      </trans-unit>
+      <trans-unit id="CW218Qv" resname="Job details">
+        <source>Job details</source>
+        <target>__Job details</target>
+      </trans-unit>
+      <trans-unit id="2VCCou5" resname="Author">
+        <source>Author</source>
+        <target>__Author</target>
+      </trans-unit>
+      <trans-unit id="LKRjelu" resname="Project Details">
+        <source>Project Details</source>
+        <target>__Project Details</target>
+      </trans-unit>
+      <trans-unit id="mOM7DzE" resname="Applications">
+        <source>Applications</source>
+        <target>__Applications</target>
+      </trans-unit>
+      <trans-unit id="k8kchR5" resname="Price">
+        <source>Price</source>
+        <target>__Price</target>
+      </trans-unit>
+      <trans-unit id="tCfD3sk" resname="per">
+        <source>per</source>
+        <target>__per</target>
+      </trans-unit>
+      <trans-unit id="9NO4IcT" resname="Member Since">
+        <source>Member Since</source>
+        <target>__Member Since</target>
+      </trans-unit>
+      <trans-unit id="K1w9JnI" resname="Contact">
+        <source>Contact</source>
+        <target>__Contact</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
