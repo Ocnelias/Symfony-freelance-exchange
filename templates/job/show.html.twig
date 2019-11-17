@@ -33,7 +33,6 @@
                                     <h3 class="tab-title"> {{'Applications'|trans}} </h3>
                                     <div class="product-review">
                                         <div class="media">
-                                            <!-- Avater -->
 {#
                                             <img src="images/user/user-thumb.jpg" alt="avater">
 #}
@@ -58,17 +57,25 @@
                                                         </li>
                                                     </ul>
                                                 </div>#}
-                                                <div class="name">
-                                                    <h5>Jessica Brown</h5>
-                                                </div>
-                                                <div class="date">
-                                                    <p>Mar 20, 2018</p>
-                                                </div>
-                                                <div class="review-comment">
-                                                    <p>
-                                                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremqe laudant tota rem ape riamipsa eaque.
-                                                    </p>
-                                                </div>
+
+                                                {% for application in applications %}
+
+                                                    <div class="name">
+                                                        <h5>{{application.user.email}}</h5>
+                                                    </div>
+
+                                                    <div class="date">
+                                                        <p>{{application.createdAt|date('d/m/Y H:i')}}</p>
+                                                    </div>
+
+                                                    <div class="review-comment">
+                                                        <p>
+                                                            {{application.message}}
+                                                        </p>
+                                                    </div>
+                                                {% endfor %}
+
+
                                             </div>
                                         </div>
                                         <div class="review-submission">
@@ -80,8 +87,11 @@
                                             <div class="review-submit">
                                                 {{ form_start(form, {'action': path('save_application'),'attr': {'class': ''}}) }}
 
+
                                                 <div class="form-group">
                                                     {{ form_row(form.message, { 'label': 'Message'|trans }) }}
+                                                    {{ form_row(form.job, { 'value':"2", 'label': false }) }}
+
                                                 </div>
 
                                                 <button type="submit" class="btn btn-primary">{{'Submit'|trans}}</button>

@@ -121,13 +121,16 @@ class JobController extends AbstractController
 
         $application = new Application();
         $application->setUser($this->getUser())->getId();
-        $application->setJob(1);
 
 
         $form = $this->createForm(ApplicationType::class, $application);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($application);
+            $entityManager->flush();
 
             $this->addFlash('success','Your application was created successfully!');
 
@@ -141,6 +144,9 @@ class JobController extends AbstractController
      */
     public function show(Job $job): Response
     {
+        $applications= $this->getDoctrine()
+            ->getRepository(Application::class)
+            ->findBy(['job'=>$job->getId()]);
 
         $application = new Application();
 
@@ -148,6 +154,7 @@ class JobController extends AbstractController
 
         return $this->render('job/show.html.twig', [
             'job' => $job,
+            'applications' => $applications,
             'form' => $form->createView(),
         ]);
     }
