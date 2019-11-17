@@ -14,7 +14,7 @@
                         <h1 class="product-title">{{ job.title }}</h1>
                         <div class="product-meta">
                             <ul class="list-inline">
-                                <li class="list-inline-item"><i class="fa fa-user-o"></i> {{'Author'|trans}} <a href="">Andrew</a></li>
+                                <li class="list-inline-item"><i class="fa fa-user-o"></i> {{'Author'|trans}} <a href="">{{ job.user.email }}</a></li>
                                 <li class="list-inline-item"><i class="fa fa-folder-open-o"></i> {{'Category'|trans}} <a href="">{{ job.category.getLocalizedTitle() }} </a></li>
                                 <li class="list-inline-item"><i class="fa fa-location-arrow"></i> {{'Project type'|trans}} <a href="">{{ job.getIsPermanent() }} </a></li>
                             </ul>
@@ -34,10 +34,12 @@
                                     <div class="product-review">
                                         <div class="media">
                                             <!-- Avater -->
+{#
                                             <img src="images/user/user-thumb.jpg" alt="avater">
+#}
                                             <div class="media-body">
                                                 <!-- Ratings -->
-                                                <div class="ratings">
+                                             {#   <div class="ratings">
                                                     <ul class="list-inline">
                                                         <li class="list-inline-item">
                                                             <i class="fa fa-star"></i>
@@ -55,7 +57,7 @@
                                                             <i class="fa fa-star"></i>
                                                         </li>
                                                     </ul>
-                                                </div>
+                                                </div>#}
                                                 <div class="name">
                                                     <h5>Jessica Brown</h5>
                                                 </div>
@@ -70,99 +72,28 @@
                                             </div>
                                         </div>
                                         <div class="review-submission">
-                                            <h3 class="tab-title">Submit your review</h3>
+                                            <h3 class="tab-title"> {{'Submit your Apply'|trans}} </h3>
                                             <!-- Rate -->
                                             <div class="rate">
                                                 <div class="starrr"></div>
                                             </div>
                                             <div class="review-submit">
-                                                <form action="#" class="row">
-                                                    <div class="col-lg-6">
-                                                        <input type="text" name="name" id="name" class="form-control" placeholder="Name">
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email">
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <textarea name="review" id="review" rows="10" class="form-control" placeholder="Message"></textarea>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <button type="submit" class="btn btn-main">Sumbit</button>
-                                                    </div>
-                                                </form>
+                                                {{ form_start(form, {'action': path('save_application'),'attr': {'class': ''}}) }}
+
+                                                <div class="form-group">
+                                                    {{ form_row(form.message, { 'label': 'Message'|trans }) }}
+                                                </div>
+
+                                                <button type="submit" class="btn btn-primary">{{'Submit'|trans}}</button>
+
+
+                                                {{ form_end(form) }}
                                             </div>
                                         </div>
                                     </div>
 
-
-
-
                                 </div>
-                                <div class="tab-pane fade" id="pills-app" role="tabpanel" aria-labelledby="pills-contact-tab">
-                                    <h3 class="tab-title">Product Review</h3>
-                                    <div class="product-review">
-                                        <div class="media">
-                                            <!-- Avater -->
-                                            <img src="images/user/user-thumb.jpg" alt="avater">
-                                            <div class="media-body">
-                                                <!-- Ratings -->
-                                                <div class="ratings">
-                                                    <ul class="list-inline">
-                                                        <li class="list-inline-item">
-                                                            <i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li class="list-inline-item">
-                                                            <i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li class="list-inline-item">
-                                                            <i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li class="list-inline-item">
-                                                            <i class="fa fa-star"></i>
-                                                        </li>
-                                                        <li class="list-inline-item">
-                                                            <i class="fa fa-star"></i>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="name">
-                                                    <h5>Jessica Brown</h5>
-                                                </div>
-                                                <div class="date">
-                                                    <p>Mar 20, 2018</p>
-                                                </div>
-                                                <div class="review-comment">
-                                                    <p>
-                                                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremqe laudant tota rem ape riamipsa eaque.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="review-submission">
-                                            <h3 class="tab-title">Submit your review</h3>
-                                            <!-- Rate -->
-                                            <div class="rate">
-                                                <div class="starrr"></div>
-                                            </div>
-                                            <div class="review-submit">
-                                                <form action="#" class="row">
-                                                    <div class="col-lg-6">
-                                                        <input type="text" name="name" id="name" class="form-control" placeholder="Name">
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email">
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <textarea name="review" id="review" rows="10" class="form-control" placeholder="Message"></textarea>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <button type="submit" class="btn btn-main">Sumbit</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -176,7 +107,7 @@
                         <!-- User Profile widget -->
                         <div class="widget user">
                             <img class="rounded-circle" src="images/user/user-thumb.jpg" alt="">
-                            <h4><a href="">Andrew</a></h4>
+                            <h4><a href="">{{ job.user.email }}</a></h4>
                             <p class="member-time">{{'Member Since'|trans}}  Jun 27, 2017</p>
                             <a href=""></a>
                             <ul class="list-inline mt-20">

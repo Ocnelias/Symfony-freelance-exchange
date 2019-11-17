@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Application;
 use App\Entity\Job;
 use App\Entity\Category;
 use App\Form\JobType;
 use App\Form\JobTypeSearch;
+use App\Form\ApplicationType;
 use App\Repository\JobRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -61,7 +63,7 @@ class JobController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_EMPLOYER');
+        $this->denyAccessUnlessGranted('ROLE_SEEKER');
 
         $job = new Job();
         $job->setUser($this->getUser())->getId();
@@ -111,12 +113,42 @@ class JobController extends AbstractController
     }
 
     /**
+     * @Route("/save_application", name="save_application", methods={"POST"})
+     */
+    public function saveApplication(Request $request): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        $application = new Application();
+        $application->setUser($this->getUser())->getId();
+        $application->setJob(1);
+
+
+        $form = $this->createForm(ApplicationType::class, $application);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $this->addFlash('success','Your application was created successfully!');
+
+        }
+
+        return $this->redirect($request->headers->get('referer'));
+    }
+
+    /**
      * @Route("/{id}", name="job_show", methods={"GET"})
      */
     public function show(Job $job): Response
     {
+
+        $application = new Application();
+
+        $form = $this->createForm(ApplicationType::class, $application);
+
         return $this->render('job/show.html.twig', [
             'job' => $job,
+            'form' => $form->createView(),
         ]);
     }
 
