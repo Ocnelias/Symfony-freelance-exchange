@@ -76,25 +76,28 @@ class JobController extends AbstractController
             /** @var uploadedFiles $uploadedFiles */
             $uploadedFiles = $form['uploadedFiles']->getData();
 
-            $data =  $form['uploadedFiles']->getData();
-           // dump($data); die();
+            //$attachments = $job->getUploadedFiles();
+
+            //dump($uploadedFiles[0]);
 
             if ($uploadedFiles) {
-                //var_dump($uploadedFiles); die();
-                $originalFilename = pathinfo($uploadedFiles->getClientOriginalName(), PATHINFO_FILENAME);
+                $FileNamesList=[];
+                foreach ($uploadedFiles as $uploadedFile) {
 
-                $newFilename = $originalFilename.'-'.uniqid().'.'.$uploadedFiles->guessExtension();
+                    $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+                    $savedFileName = $originalFilename . '-' . uniqid() . '.' . $uploadedFile->guessExtension();
+                    $FileNamesList[] = $savedFileName;
 
-                try {
-                    $uploadedFiles->move(
-                        $this->getParameter('files_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
+                    try {
+                        $uploadedFile->move(
+                            $this->getParameter('files_directory'),
+                            $savedFileName
+                        );
+                    } catch (FileException $e) {
 
+                    }
                 }
-
-                $job->setFiles($newFilename);
+                $job->setFiles(json_encode($FileNamesList));
             }
 
             $entityManager = $this->getDoctrine()->getManager();

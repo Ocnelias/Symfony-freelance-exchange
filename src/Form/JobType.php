@@ -39,26 +39,28 @@ class JobType extends AbstractType
 
             ->add('uploadedFiles', FileType::class, [
                 'label' => 'job_files_label',
+                'data_class' => null,
+                'multiple' => true,
                 'mapped' => false,
                 'required' => false,
-                'attr' => [
-                    'multiple' => 'multiple',
-                ],
-                'constraints' => [
-                    new File([
-                        'maxSize' => '1024k',
-                        'mimeTypes' => [
-                            'application/pdf',
-                            'application/x-pdf',
-                            'image/jpeg/',
-                            'image/png/',
-                            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-                            'application/msword',
-                            'text/plain',
-                        ],
-                        'mimeTypesMessage' => 'Wrong file format',
-                    ])
-                ],
+//                'attr' => [
+//                    'multiple' => 'multiple',
+//                ],
+//                'constraints' => [
+//                    new File([
+//                        'maxSize' => '1024k',
+//                        'mimeTypes' => [
+//                            'application/pdf',
+//                            'application/x-pdf',
+//                            'image/jpeg/',
+//                            'image/png/',
+//                            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+//                            'application/msword',
+//                            'text/plain',
+//                        ],
+//                        'mimeTypesMessage' => 'Wrong file format',
+//                    ])
+//                ],
 
                 'label_translation_parameters' => [
                     'job_files_label' => 'Files (Project specification, images, etc)',
@@ -80,12 +82,7 @@ class JobType extends AbstractType
             ])
 
             ->add('salaryType', ChoiceType::class, [
-                'choices'  => [
-                    'Project'=> 1,
-                    'Hour' => 2,
-                    'Day' => 3,
-                    'Month' => 4,
-                ],
+                'choices'  => array_flip(Job::getSalaryTypeList()),
                 'label' => 'job_salary_type',
                 'choice_translation_domain' => 'messages',
             ])

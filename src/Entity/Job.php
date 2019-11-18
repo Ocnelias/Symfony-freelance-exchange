@@ -24,6 +24,12 @@ class Job
     const TYPE_PERMANENT = 'Permanent job';
     const TYPE_SINGLE = 'Single project';
 
+    const SALARY_TYPE_PROJECT = 'project';
+    const SALARY_TYPE_HOUR = 'hour';
+    const SALARY_TYPE_DAY = 'day';
+    const SALARY_TYPE_WEEK = 'week';
+    const SALARY_TYPE_MONTH = 'month';
+
     public static function getCurrencyList() {
         return [
             self::CURRENCY_USD,
@@ -38,6 +44,17 @@ class Job
             self::TYPE_SINGLE,
         ];
     }
+
+    public static function getSalaryTypeList() {
+        return [
+            self::SALARY_TYPE_PROJECT,
+            self::SALARY_TYPE_HOUR,
+            self::SALARY_TYPE_DAY,
+            self::SALARY_TYPE_WEEK,
+            self::SALARY_TYPE_MONTH,
+        ];
+    }
+
 
 
     /**
@@ -404,7 +421,7 @@ class Job
 
     public function getIsPermanent(): ?string
     {
-        return $this->isPermanent;
+        return  $this->isPermanent;
     }
 
     public function setIsPermanent(?int $isPermanent): self
