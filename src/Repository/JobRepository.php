@@ -46,5 +46,17 @@ class JobRepository extends ServiceEntityRepository
             ;
     }
 
+    public function getTopProjects()
+    {
+        return $this->createQueryBuilder('i')
+            ->where('i.salaryCurrency = :val')
+            ->setParameter('val', Job::getSalaryTypeList()[0])
+            ->orderBy('i.salary', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->execute()
+            ;
+    }
+
 
 }

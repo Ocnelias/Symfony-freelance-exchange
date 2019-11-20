@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Category;
 use App\Entity\Job;
+use App\Form\Type\TagsInputType;
 use App\Repository\CategoryRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -110,6 +111,10 @@ class JobType extends AbstractType
                     ]),
                 ],
                 'translation_domain' => 'messages',
+            ])
+
+            ->add('skills', TagsInputType::class, [
+                'required' => false,
             ])
 
         ;
