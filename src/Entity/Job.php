@@ -67,6 +67,17 @@ class Job
     private $id;
 
     /**
+     * @var \Application
+     *
+     * @ORM\ManyToOne(targetEntity="Application")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id", referencedColumnName="id")
+     * })
+     */
+    private $application;
+
+
+    /**
      * @var int
      *
      * @ORM\Column(name="status", type="smallint", nullable=false)
@@ -746,6 +757,18 @@ class Job
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getApplication()
+    {
+        return $this->application;
+    }
+
+    public function setApplication(?Application $application): self
+    {
+        $this->application = $application;
 
         return $this;
     }

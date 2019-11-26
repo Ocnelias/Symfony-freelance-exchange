@@ -31,4 +31,5 @@ class ApplicationRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Application::class);
     }
+
 }

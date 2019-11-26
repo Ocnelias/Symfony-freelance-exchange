@@ -58,5 +58,19 @@ class JobRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findUserApplications()
+    {
+
+        $query=$this->createQueryBuilder('i')
+            ->join('i.application', 'app')
+            ->orderBy('i.id', 'DESC');
+
+        $query->where('app.user = :val')->setParameter('val', 1);
+
+        $query->getQuery()->execute();
+
+        return $query;
+    }
+
 
 }
